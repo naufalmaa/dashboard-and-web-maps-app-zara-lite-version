@@ -1,17 +1,21 @@
 from dash import Dash, html
 
 from src.components.web_layout import create_layout
-from src.data.loader import load_well_production_data, load_all_blocks
+from src.data.loader import load_well_production_data, load_all_blocks, load_log_data
 from src.data.source import DataSource
 
 PRODUCTION_DATA_PATH = "./data/csv/aceh_production_data_daily_ed.csv"
 BLOCK_DATA_PATH = './data/geojson/all_blocks_ed.geojson'
+LOG_DATA_PATH = "./data/csv/aceh_log_data_ed.csv"
 
 def main() -> None:
     
-    data = load_well_production_data(PRODUCTION_DATA_PATH)
-    data2 = load_all_blocks(BLOCK_DATA_PATH)
-    data = DataSource(_data=data, _geodata_blocks=data2)
+    data_well = load_well_production_data(PRODUCTION_DATA_PATH)
+    data_block = load_all_blocks(BLOCK_DATA_PATH)
+    
+    # 040823
+    data_log = load_log_data(LOG_DATA_PATH)
+    data = DataSource(_data=data_well, _geodata_blocks=data_block, _data_log=data_log)
     
     app = Dash(__name__, prevent_initial_callbacks='initial_duplicate', suppress_callback_exceptions=True, meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1.0"}

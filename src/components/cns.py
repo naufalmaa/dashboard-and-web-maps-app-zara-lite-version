@@ -102,12 +102,22 @@ PPD_SECOND_CHART_LEFT_GRID = "ppd-second-chart-left-grid"
 # parts of right charts
 
 # on well_stats_subplots.py
-PPD_FIRST_CHART_RIGHT_GRID = "ppd-first-chart-left-grid"
+PPD_FIRST_CHART_RIGHT_GRID = "ppd-first-chart-right-grid"
 # on water_injection_subplots.py
-PPD_SECOND_CHART_RIGHT_GRID = "ppd-second-chart-left-grid"
+PPD_SECOND_CHART_RIGHT_GRID = "ppd-second-chart-right-grid"
 # on water_cut_gor_line_subplots.py
-PPD_THIRD_CHART_RIGHT_GRID = "ppd-third-chart-left-grid"
+PPD_THIRD_CHART_RIGHT_GRID = "ppd-third-chart-right-grid"
 # on oil_vs_water_subplots.py
-PPD_FOURTH_CHART_RIGHT_GRID = "ppd-fourth-chart-left-grid"
+PPD_FOURTH_CHART_RIGHT_GRID = "ppd-fourth-chart-right-grid"
 # on dp_choke_size_vs_avg_dp_subplots.py
-PPD_FIFTH_CHART_RIGHT_GRID = "ppd-fifth-chart-left-grid"
+PPD_FIFTH_CHART_RIGHT_GRID = "ppd-fifth-chart-right-grid"
+
+########################################################################
+########################################################################
+# well log
+WL_MAIN_FILTER = "wl-main-filter"
+WL_ACCORDION_FILTER = "wl-accordion-filter"
+
+WL_MAIN_GRAPHS = "wl-main-graphs"
+
+WL_FIRST_GRAPH = "wl-first-graph"

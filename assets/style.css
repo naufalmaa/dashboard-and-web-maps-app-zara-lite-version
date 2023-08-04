@@ -65,11 +65,44 @@ body {
 
 /* Production filter right side graphs */
 .ppd-production-filter{
-    padding: 20px 80px 80px;
+    margin-right: 20px;
+}
+
+.ppd-summary-card-left-grid{
+    margin: 20px 20px 20px 20px;
 }
 
 .ppd-main-graphs{
-    padding: 40px 0px 40px 40px;
+    /* padding-right: 30px; */
+    margin-left: 30px;
+    /* margin-right: 20px; */
+}
+    /* border: 2px solid #DEE2E6;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+} */
+
+.ppd-first-chart-left-grid{
+    margin: 20px 20px 20px 20px;
+}
+
+.ppd-second-chart-right-grid{
+    margin: 20px 20px 20px 20px;
+}
+
+.ppd-third-chart-right-grid{
+    margin: 20px 20px 20px 20px;
+}
+
+.ppd-fourth-chart-right-grid{
+    margin: 20px 20px 20px 20px;
+}
+
+.ppd-fifth-chart-right-grid{
+    margin: 30px 20px 20px 20px;
 }
 
 #from-datepicker-layout, #to-datepicker-layout{
@@ -77,7 +110,7 @@ body {
 }
 
 .ppd-accordion-filter{
-    margin-top: 40px;
+    margin: 20px 80px 80px;
 }
 
 .ppd-to-date-picker-wrapper{
@@ -93,12 +126,27 @@ body {
     width: 100%;
 }
 
+/* well log */
+.wl-main-filter{
+    margin-right: 20px;
+}
+
+.wl-accordion-filter{
+    margin: 20px 80px 80px;
+}
+
+.wl-main-graphs {
+    margin-left: 30px;
+}
+
+
+
 
 @media (min-width: 768px) {
 
     .web-container {
         grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: 70px 1300px 1400px 400px 2500px 100px;
+        grid-template-rows: 70px 1300px 1400px 400px 2630px 100px;
     }
 
     .web-container .navbar {
@@ -135,7 +183,7 @@ body {
 
     .web-container {
         grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: 70px 1500px 2500px 100px;
+        grid-template-rows: 70px 1500px 2600px 100px;
     }
 
     .web-container .navbar {
@@ -158,6 +206,11 @@ body {
     .web-container .ppd-production-filter {
         grid-column: 9/13;
         grid-row: 3/4;
+    }
+
+    .web-container .wl-main-graphs {
+        grid-column: 1/9;
+        grid-row: 4/5;
     }
 
     .web-container .footer-web {

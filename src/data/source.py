@@ -61,7 +61,8 @@ class DataSource:
         ]
         return DataSource(filtered_block_data)
     
-# main filter well-log
+    # 040823
+    # main filter well-log
     def filter_log(
         self,
         wells: Optional[list[str]] = None,
@@ -75,7 +76,11 @@ class DataSource:
             
         filtered_log_data = self._data_log[
             (self._data_log[LogDataSchema.WELLBORE].isin(wells))
-        ][params]
+        ][
+            self.columns_name_xyz_log + 
+            params + 
+            self.columns_lith_log
+        ]
         
         return DataSource(filtered_log_data)
     
@@ -309,6 +314,7 @@ class DataSource:
     def moving_average(self):
         return self._data[ProductionDataSchema.MOVING_AVERAGE]
     
+    # 040823
     # property for well-log graph
     @property
     def all_wells_log(self) -> list[str]:
@@ -319,7 +325,15 @@ class DataSource:
         return sorted(set(self.all_wells_log))
     
     @property
+    def columns_name_xyz_log(self) -> list[str]:
+        return self._data_log.iloc[:, :5].columns.tolist()
+    
+    @property
     def unique_params_log(self) -> list[str]:
         return self._data_log.iloc[:, 5:12].columns.tolist()
+    
+    @property
+    def columns_lith_log(self) -> list[str]:
+        return self._data_log.iloc[:, 12:].columns.tolist()
     
     
