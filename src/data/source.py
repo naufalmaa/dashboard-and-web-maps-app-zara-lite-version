@@ -65,7 +65,7 @@ class DataSource:
     # main filter well-log
     def filter_log(
         self,
-        wells: Optional[list[str]] = None,
+        wells: Optional[str] = None,
         params: Optional[list[str]] = None,
     ) -> DataSource:
         
@@ -75,7 +75,7 @@ class DataSource:
             params = self.unique_params_log
             
         filtered_log_data = self._data_log[
-            (self._data_log[LogDataSchema.WELLBORE].isin(wells))
+            (self._data_log[LogDataSchema.WELLBORE] == wells)
         ][
             self.columns_name_xyz_log + 
             params + 
@@ -321,8 +321,8 @@ class DataSource:
         return self._data_log[LogDataSchema.WELLBORE].tolist()
     
     @property
-    def unique_wells_log(self) -> list[str]:
-        return sorted(set(self.all_wells_log))
+    def unique_wells_log(self) -> str:
+        return ', '.join(sorted(set(self.all_wells_log)))
     
     @property
     def columns_name_xyz_log(self) -> list[str]:

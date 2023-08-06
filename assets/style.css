@@ -146,7 +146,7 @@ body {
 
     .web-container {
         grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: 70px 1300px 1400px 400px 2630px 100px;
+        grid-template-rows: 70px 1300px 1400px 400px 2630px 500px 800px 100px;
     }
 
     .web-container .navbar {
@@ -166,6 +166,14 @@ body {
     }
 
     .web-container .ppd-main-graphs {
+        grid-column: 1/13;
+    }
+
+    .web-container .wl-main-graphs {
+        grid-column: 1/13;
+    }
+
+    .web-container .wl-main-filter {
         grid-column: 1/13;
     }
 
@@ -213,9 +221,14 @@ body {
         grid-row: 4/5;
     }
 
+    .web-container .wl-main-filter {
+        grid-column: 9/13;
+        grid-row: 4/5;
+    }
+
     .web-container .footer-web {
         grid-column: 1/13;
-        grid-row: 4/6;
+        grid-row: 74/75;
     }
 
 }

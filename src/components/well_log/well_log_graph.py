@@ -17,7 +17,7 @@ from .. import ids, cns
 
 def render(app: Dash, source: DataSource) -> html.Div:
     @app.callback(
-        Output(component_id="output-graph-well-log", component_property="figure"),
+        Output(component_id="output-graph-well-log", component_property="children"),
         [
             Input(component_id="select-well-log", component_property="value"),
             Input(component_id="checkbox-parameter-well-log", component_property="value"),
@@ -93,10 +93,11 @@ def render(app: Dash, source: DataSource) -> html.Div:
             ticks="outside",
         )
         figure.update_layout(
-            title=well_chosen, height=750, width=1300, showlegend=False
+            title=well_chosen, height=750, width=1200, showlegend=True
         )
 
-        return html.Div(  # graph for well-log data
+        return \
+            html.Div(  # graph for well-log data
                 dcc.Graph(figure=figure),
                 id="output-graph-well-log",
                 className=cns.WL_FIRST_GRAPH

@@ -227,7 +227,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
             html.Div(
                 className=cns.WL_MAIN_GRAPHS,
                 children=[
-                    html.H1("Well-log"),
+                    html.H1("Well-Log"),
                     # well_log_filter.render(app, source),
                     well_log_graph.render(app, source),
                 ],
@@ -238,8 +238,6 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                 className=cns.FOOTER_WEB,
                 children=[
                     html.H1("Footer"),
-                    # well_log_filter.render(app, source),
-                    well_log_graph.render(app, source),
                 ],
             ),
         ],

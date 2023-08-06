@@ -22,9 +22,9 @@ def render(app: Dash, source: DataSource) -> html.Div:
         Input("reset-filter-well-log", "n_clicks"),
     )
     def reset_filter_well_log(n_clicks) -> html.Div:
-        if n_clicks is None:
-            raise PreventUpdate
-        else:
+        # if n_clicks is None:
+        #     raise PreventUpdate
+        # else:
             reset_filter = source.unique_params_log
             return reset_filter
 
@@ -34,7 +34,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         dmc.Select(
             placeholder="Select Borehole Name",
             id="select-well-log",
-            value="well1",
+            value ="Well-E1",
             data=[
                 #   'Well-E1' 'Well-N1' 'Well-W1' 'Well-C1' 'Well-S1' 'Well-N2' 'Well-E2' 'Well-W2' 'Well-E3'
                 {
