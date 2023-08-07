@@ -18,8 +18,8 @@ from .. import ids, cns
 def render(app: Dash, source: DataSource) -> html.Div:
     # reset the well-log parameter
     @app.callback(
-        Output("checkbox-parameter-well-log", "value"),
-        Input("reset-filter-well-log", "n_clicks"),
+        Output(ids.WELL_LOG_PARAMETER_CHECKBOX, "value"),
+        Input(ids.WELL_LOG_RESET_FILTER_BUTTON, "n_clicks"),
     )
     def reset_filter_well_log(n_clicks) -> html.Div:
         # if n_clicks is None:
@@ -33,7 +33,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         html.H5("Well Name", style={"marginTop": 10}),
         dmc.Select(
             placeholder="Select Borehole Name",
-            id="select-well-log",
+            id=ids.WELL_LOG_SELECT,
             value ="Well-E1",
             data=[
                 #   'Well-E1' 'Well-N1' 'Well-W1' 'Well-C1' 'Well-S1' 'Well-N2' 'Well-E2' 'Well-W2' 'Well-E3'
@@ -85,7 +85,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             style={"marginTop": 30},
         ),
         dmc.CheckboxGroup(
-            id="checkbox-parameter-well-log",
+            id=ids.WELL_LOG_PARAMETER_CHECKBOX,
             orientation="vertical",
             children=[
                 # ['CALI','RDEP','GR','RHOB','NPHI','SP','DTC']
@@ -146,7 +146,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         # reset-button
         dmc.Button(
             "Reset",
-            id="reset-filter-well-log",
+            id=ids.WELL_LOG_RESET_FILTER_BUTTON,
             variant="outline",
             color="dark",
             radius="10px",

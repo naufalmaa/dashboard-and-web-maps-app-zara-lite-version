@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import plotly.express as px
 
 # import plotly.express as px
 
@@ -17,10 +18,12 @@ from .. import ids, cns
 
 def render(app: Dash, source: DataSource) -> html.Div:
     @app.callback(
-        Output(component_id="output-graph-well-log", component_property="children"),
+        Output(component_id=ids.WELL_LOG_FIRST_GRAPH, component_property="children"),
         [
-            Input(component_id="select-well-log", component_property="value"),
-            Input(component_id="checkbox-parameter-well-log", component_property="value"),
+            Input(component_id=ids.WELL_LOG_SELECT, component_property="value"),
+            Input(
+                component_id=ids.WELL_LOG_PARAMETER_CHECKBOX, component_property="value"
+            ),
         ],
         prevent_initial_call=True,
     )
@@ -43,69 +46,112 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
         # figure_column = np.arange(1, 1+len(params_chosen))
 
-        filtered_well_log_data = source.filter_log(
-            wells=well_chosen, params=params_chosen
-        ).to_dataframe
+        if params_chosen is not None:
+            filtered_well_log_data = source.filter_log(
+                wells=well_chosen, params=params_chosen
+            ).to_dataframe
 
-        figure_column = np.arange(1, 1 + len(params_chosen))
+            all_parameters = source.unique_params_log
 
-        figure = make_subplots(rows=1, cols=len(params_chosen), shared_yaxes=True)
+            # Generate a list of colors for all parameters
+            colors = [
+                "rgb(136, 204, 238)",
+                "rgb(204, 102, 119)",
+                "rgb(221, 204, 119)",
+                "rgb(17, 119, 51)",
+                "rgb(51, 34, 136)",
+                "rgb(170, 68, 153)",
+                "rgb(68, 170, 153)",
+            ]  # You can use any color palette
 
-        for i in range(len(params_chosen)):
-            figure.add_trace(
-                go.Scatter(
-                    # data_new = [d['value'] for d in data]
-                    x=filtered_well_log_data[params_chosen[i]],
-                    y=filtered_well_log_data[LogDataSchema.DEPTH],
-                    name=params_chosen[i],
-                    # line_color=colors[i]
-                ),
-                row=1,
-                col=figure_column[i],
+            # Create an empty list to store the traces
+            traces = []
+
+            # Iterate through all parameters, even if not selected
+            for i, param in enumerate(all_parameters):
+                # Check if the parameter is selected
+                if param in params_chosen:
+                    # Get the data for the selected parameter
+                    data = filtered_well_log_data[param]
+
+                    # Create a scatter trace and append to the list of traces
+                    trace = go.Scatter(
+                        x=data,
+                        y=filtered_well_log_data[LogDataSchema.DEPTH],
+                        name=param,
+                        line=dict(color=colors[i]),  # Set the color
+                    )
+                    traces.append(trace)
+                else:
+                    # Create an empty trace for parameters not selected
+                    trace = go.Scatter(x=[], y=[], name="empty")
+                    traces.append(trace)
+
+            # Create the figure with subplots and add the traces
+            figure = make_subplots(
+                rows=1,
+                cols=len(all_parameters),
+                shared_yaxes=True,
+                subplot_titles=all_parameters,
+                column_widths=[400] * len(all_parameters),
             )
 
+            for i, trace in enumerate(traces):
+                figure.add_trace(trace, row=1, col=i + 1)
+                figure.update_xaxes(
+                    type="log",
+                    row=1,
+                    col=i + 1,
+                    # title_text=params_chosen[i],
+                    tickfont_size=12,
+                    linecolor="#585858",
+                )
+
+            # Update x-axes properties
             figure.update_xaxes(
-                type="log",
-                row=1,
-                col=figure_column[i],
-                title_text=params_chosen[i],
-                tickfont_size=12,
-                linecolor="#585858",
+                showline=True,
+                linewidth=2,
+                linecolor="black",
+                mirror=True,
+                ticks="inside",
+                tickangle=0,
             )
 
-        figure.update_xaxes(
-            showline=True,
-            linewidth=2,
-            linecolor="black",
-            mirror=True,
-            ticks="inside",
-            tickangle=0,
-        )
-        figure.update_yaxes(
-            range=[3300, 400],
-            tickmode="linear",
-            tick0=0,
-            dtick=250,
-            showline=True,
-            linewidth=2,
-            linecolor="black",
-            mirror=True,
-            ticks="outside",
-        )
-        figure.update_layout(
-            title=well_chosen, height=750, width=1200, showlegend=True
-        )
+            # Update y-axes properties
+            figure.update_yaxes(
+                range=[3300, 400],
+                tickmode="linear",
+                tick0=0,
+                dtick=250,
+                showline=True,
+                linewidth=2,
+                linecolor="black",
+                mirror=True,
+                ticks="outside",
+            )
 
-        return \
-            html.Div(  # graph for well-log data
-                dcc.Graph(figure=figure),
-                id="output-graph-well-log",
-                className=cns.WL_FIRST_GRAPH
-            ),
-        
+            # Update layout properties
+            figure.update_layout(
+                title=well_chosen,
+                height=750,
+                showlegend=False,
+                # xaxis_range=[x_min, x_max],  # Set desired x range
+                # yaxis_range=[y_min, y_max],  # Set desired y range
+            )
+
+            return (
+                html.Div(  # graph for well-log data
+                    dcc.Graph(figure=figure),
+                    id=ids.WELL_LOG_FIRST_GRAPH,
+                    className=cns.WL_FIRST_GRAPH,
+                ),
+            )
+
+        else:
+            pass
 
     return html.Div(
-        id="output-graph-well-log",
+        id=ids.WELL_LOG_FIRST_GRAPH,
         className=cns.WL_FIRST_GRAPH,
         # children=[
         #     html.H1(

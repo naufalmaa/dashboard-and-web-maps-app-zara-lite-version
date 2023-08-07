@@ -59,7 +59,13 @@ DP_CS_VS_AVG_DP_SUBPLOTS = "dp-cs-vs-avg-dp-subplots"
 
 # ----------------------------------------------------------------
 # well-log
-WELL_LOG_GRAPH = "well-log-graph"
+WELL_LOG_PARAMETER_CHECKBOX = "checkbox-parameter-well-log"
+WELL_LOG_RESET_FILTER_BUTTON = "reset-filter-well-log"
+WELL_LOG_SELECT = "select-well-log"
+
+
+
+WELL_LOG_FIRST_GRAPH = "output-graph-well-log"
 
 # ----------------------------------------------------------------
 # untuk CSS
@@ -68,3 +74,5 @@ FROM_TO_DATEPICKER_TOGETHER = 'from-to-datepicker-together'
 FROM_DATEPICKER_LAYOUT = 'from-datepicker-layout'
 TO_DATEPICKER_LAYOUT = 'to-datepicker-layout'
 ICON_TITLE_SUMMARY_TOGETHER = 'icon-title-summary-together'
+
+

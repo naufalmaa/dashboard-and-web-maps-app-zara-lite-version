@@ -243,7 +243,6 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     order=5,
                                                     align="left",
                                                     color="#25262B",
-                                                    # color='black',
                                                     style={"fontSize": 20},
                                                 ),
                                                 dmc.Text(
