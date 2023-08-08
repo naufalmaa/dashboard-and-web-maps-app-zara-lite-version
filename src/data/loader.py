@@ -15,6 +15,46 @@ class allBLOCKS:
     AREA_BLOCK = 'sq_km'
     RESERVE_BLOCK = 'reserve'
     GEOMETRY_BLOCK = 'geometry'
+    TOOLTIP = 'tooltip'
+    POPUP = 'popup'
+
+def create_tooltip_block_column(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    gdf[allBLOCKS.TOOLTIP] = gdf[allBLOCKS.BLOCK_NAME]
+    return gdf[allBLOCKS.TOOLTIP]
+
+def create_popup_block_column(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    gdf[allBLOCKS.POPUP] =  '''
+
+
+    <strong><H4 style="margin-top:10px; margin-bottom:20px; font-family:Ubuntu, sans-serif; font-size: 25px; color:#3F72AF;">
+    ''' + gdf['name'] + '</H4></strong>' + """
+
+
+    <table style="height: 50px; width: 250px;">
+        <tbody>
+        <tr>
+        <th class="data-cell-left"><strong>Status</strong></th>
+        <td class="data-cell-right"> """ + gdf['status'] + """</td>
+        </tr>
+        <tr>
+        <th class="data-cell-left"><strong>Operator</strong></th>
+        <td class="data-cell-right"> """ + gdf['operator'] + """</td>
+        </tr>
+        <tr>
+        <th class="data-cell-left"><strong>Number of Wells</strong></th>
+        <td class="data-cell-right"> """ + gdf['num_well'].map(str) + """</td>
+        </tr>
+        <tr>
+        <th class="data-cell-left"><strong>Area</strong></th>
+        <td class="data-cell-right"> """ + gdf['sq_km'].map(str) + """ km<sup>2</sup></td>
+        </tr>
+        <tr>
+        <th class="data-cell-left"><strong>Reserve Estimation</strong></th>
+        <td class="data-cell-right"> """ + gdf['reserve'].map(str) + """ MMbbl</td>
+        </tr>
+        """
+    
+    return gdf[allBLOCKS.POPUP]
     
 def load_all_blocks(path: str) -> gpd.GeoDataFrame:
     
@@ -30,8 +70,12 @@ def load_all_blocks(path: str) -> gpd.GeoDataFrame:
             allBLOCKS.GEOMETRY_BLOCK: str,
         }
     )
+    all_blocks[allBLOCKS.TOOLTIP] = create_tooltip_block_column(all_blocks)
+    all_blocks[allBLOCKS.POPUP] = create_popup_block_column(all_blocks)
     
     return all_blocks
+
+################################################################
 
 class allWELLS:
     WELLBORE = 'name'
@@ -40,13 +84,48 @@ class allWELLS:
     PURPOSE_WELL = 'purpose'
     TYPE_WELL = 'type'
     GEOMETRY_WELL = 'geometry'
+    TOOLTIP = 'tooltip'
+    POPUP = 'popup'
+
+def create_tooltip_wells_column(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    gdf[allWELLS.TOOLTIP] = gdf[allWELLS.WELLBORE]
+    return gdf[allWELLS.TOOLTIP]
+
+def create_popup_wells_column(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    gdf[allWELLS.POPUP] = '''
+
+    <strong><H4 style="margin-top:10px; margin-bottom:20px; font-family:Ubuntu, sans-serif; font-size: 25px; color:#3F72AF;">
+    ''' + gdf['name'] + '</H4></strong>' + """
+
+
+    <table style="height: 50px; width: 250px;">
+        <tbody>
+        <tr>
+        <th class="data-cell-left"><strong>Orientation</strong></th>
+        <td class="data-cell-right"> """ + gdf['orient'] + """</td>
+        </tr>
+        <tr>
+        <th class="data-cell-left"><strong>Status</strong></th>
+        <td class="data-cell-right"> """ + gdf['status'] + """</td>
+        </tr>
+        <tr>
+        <th class="data-cell-left"><strong>Purpose</strong></th>
+        <td class="data-cell-right"> """ + gdf['purpose'] + """</td>
+        </tr>
+        <tr>
+        <th class="data-cell-left"><strong>Area</strong></th>
+        <td class="data-cell-right"> """ + gdf['type'] + """</td>
+        </tr>
+        """
+        
+    return gdf[allBLOCKS.POPUP]
 
 def load_all_wells(path: str) -> gpd.GeoDataFrame:
     
     all_wells = gpd.read_file(
         path,
         dtype={
-            allWELLS.WELLBORE_WELL: str,
+            allWELLS.WELLBORE: str,
             allWELLS.ORIENTATION_WELL: str,
             allWELLS.STATUS_WELL: str,
             allWELLS.PURPOSE_WELL: str,
@@ -54,8 +133,12 @@ def load_all_wells(path: str) -> gpd.GeoDataFrame:
             allWELLS.GEOMETRY_WELL: str,
         }
     )
+    all_wells[allWELLS.TOOLTIP] = create_tooltip_wells_column(all_wells)
+    all_wells[allWELLS.POPUP] = create_popup_wells_column(all_wells)
     
     return all_wells
+
+################################################################
 
 class LogDataSchema:
     WELLBORE = "WELL_BORE_CODE"
@@ -96,6 +179,7 @@ def load_log_data(path: str) -> pd.DataFrame:
     
     return log_data
 
+################################################################
 class ProductionDataSchema:
     DATE                  = "DATEPRD"
     MONTH                 = "MONTHPRD"
@@ -164,6 +248,8 @@ def load_well_production_data(path: str) -> pd.DataFrame:
     # production_data[ProductionDataSchema]
     
     return production_data
+
+################################################################
 
 class ProductionDataMonthlySchema:
     DATE                  = "DATEPRD"

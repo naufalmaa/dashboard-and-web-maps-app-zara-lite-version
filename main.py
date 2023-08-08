@@ -8,7 +8,7 @@ PRODUCTION_DATA_PATH = "./data/csv/aceh_production_data_daily_ed.csv"
 BLOCK_DATA_PATH = './data/geojson/all_blocks_ed.geojson'
 LOG_DATA_PATH = "./data/csv/aceh_log_data_ed.csv"
 
-def main() -> None:
+def main() -> None: 
     
     data_well = load_well_production_data(PRODUCTION_DATA_PATH)
     data_block = load_all_blocks(BLOCK_DATA_PATH)
