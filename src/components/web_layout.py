@@ -21,7 +21,7 @@ from .production_performance import (
     to_date_datepicker,
 )
 
-from .well_log import well_log_filter, well_log_graph, well_log_layout
+from .gng_analysis import well_log_filter, well_log_graph, well_log_layout
 
 from .web_maps import filter_maps, restart_button, leaflet_maps
 
@@ -102,6 +102,8 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                                     )
                                 ],
                             ),
+                            
+                            # BLOCK FILTER
                             dmc.Accordion(
                                 value="block filter",
                                 radius=10,
@@ -119,9 +121,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                                                 html.Div(
                                                     children=[
                                                         filter_maps.render(app, source),
-                                                        restart_button.render(
-                                                            app, source
-                                                        ),
+                                                        restart_button.render(app, source),
                                                     ]
                                                 )
                                             ),
@@ -130,6 +130,36 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                                     )
                                 ],
                             ),
+                            
+                            # WELL FILTER
+                            dmc.Accordion(
+                                value="well filter",
+                                radius=10,
+                                variant="contained",
+                                children=[
+                                    dmc.AccordionItem(
+                                        [
+                                            dmc.AccordionControl(
+                                                "Well Filter",
+                                                icon=DashIconify(
+                                                    icon='material-symbols:pin-drop-outline', width=20
+                                                ),
+                                            ),
+                                            dmc.AccordionPanel(
+                                                html.Div(
+                                                    children=[
+                                                        # filter_well_maps.render(app, source),
+                                                        # restart_button.render(app, source),
+                                                    ]
+                                                )
+                                            ),
+                                        ],
+                                        value="block filter",
+                                    )
+                                ],
+                            ),
+                            
+                            
                         ],
                     ),
                 ],
