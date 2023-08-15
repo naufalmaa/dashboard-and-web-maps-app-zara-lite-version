@@ -23,7 +23,7 @@ from .production_performance import (
 
 from .gng_analysis import well_log_filter, well_log_graph, well_log_layout
 
-from .web_maps import filter_maps, restart_button, leaflet_maps
+from .web_maps import filter_maps, restart_button, leaflet_maps, filter_well_maps, restart_well_button
 
 from .web_maps.data_color_map import colormap
 
@@ -108,6 +108,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                                 value="block filter",
                                 radius=10,
                                 variant="contained",
+                                style={"marginBottom": 10},
                                 children=[
                                     dmc.AccordionItem(
                                         [
@@ -148,8 +149,8 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                                             dmc.AccordionPanel(
                                                 html.Div(
                                                     children=[
-                                                        # filter_well_maps.render(app, source),
-                                                        # restart_button.render(app, source),
+                                                        filter_well_maps.render(app, source),
+                                                        restart_well_button.render(app, source),
                                                     ]
                                                 )
                                             ),

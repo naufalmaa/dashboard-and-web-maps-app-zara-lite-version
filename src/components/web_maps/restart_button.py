@@ -17,6 +17,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         [
             Input(ids.RESTART_FILTER_MAP, "n_clicks")
         ],
+        prevent_initial_call=True,
     )
     
     def restart_map(restart_filter: int) -> list[str]:

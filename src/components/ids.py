@@ -11,6 +11,14 @@ RESERVE_SLIDER = 'reserve-slider'
 
 RESTART_FILTER_MAP = 'restart-map'
 
+WELL_NAME_MULTISELECT = 'multiselect-borehole'
+ORIENTATION_WELL_CHECKBOX  = 'checkbox_orientation_well'
+STATUS_WELL_CHECKBOX  = 'checkbox_status_well'
+PURPOSE_WELL_CHECKBOX = 'checkbox_purpose_well'
+TYPE_WELL_CHECKBOX = 'checkbox_type_well'
+
+RESTART_FILTER_WELL_MAP = 'reset_well'
+
 # maps
 MAP_LAYOUT = 'map-layout'
 
