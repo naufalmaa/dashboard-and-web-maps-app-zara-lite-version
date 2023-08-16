@@ -94,12 +94,12 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         color="dark",
                         style={"marginTop": 0},
                     ),
-                    dmc.Checkbox(
-                        label="Inactive",
-                        value="Inactive",
-                        color="dark",
-                        style={"marginTop": -15},
-                    ),
+                    # dmc.Checkbox(
+                    #     label="Inactive",
+                    #     value="Inactive",
+                    #     color="dark",
+                    #     style={"marginTop": -15},
+                    # ),
                     dmc.Checkbox(
                         label="Shut-in",
                         value="Shut-in",
@@ -113,8 +113,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         style={"marginTop": -15},
                     ),
                     dmc.Checkbox(
-                        label="Abandoned",
-                        value="Abandoned",
+                        label="Abandonment",
+                        value="Abandonment",
                         color="dark",
                         style={"marginTop": -15},
                     ),
@@ -138,12 +138,12 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         color="dark",
                         style={"marginTop": -15},
                     ),
-                    dmc.Checkbox(
-                        label="Appraisal",
-                        value="Appraisal",
-                        color="dark",
-                        style={"marginTop": -15},
-                    ),
+                    # dmc.Checkbox(
+                    #     label="Appraisal",
+                    #     value="Appraisal",
+                    #     color="dark",
+                    #     style={"marginTop": -15},
+                    # ),
                     dmc.Checkbox(
                         label="Injection",
                         value="Injection",
@@ -156,12 +156,12 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         color="dark",
                         style={"marginTop": -15},
                     ),
-                    dmc.Checkbox(
-                        label="Abandonment",
-                        value="Abandonment",
-                        color="dark",
-                        style={"marginTop": -15},
-                    ),
+                    # dmc.Checkbox(
+                    #     label="Abandonment",
+                    #     value="Abandonment",
+                    #     color="dark",
+                    #     style={"marginTop": -15},
+                    # ),
                 ],
                 value=source.all_purpose_well
             ),
@@ -182,12 +182,12 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         color="dark",
                         style={"marginTop": -15},
                     ),
-                    dmc.Checkbox(
-                        label="Observation",
-                        value="Observation",
-                        color="dark",
-                        style={"marginTop": -15},
-                    ),
+                    # dmc.Checkbox(
+                    #     label="Observation",
+                    #     value="Observation",
+                    #     color="dark",
+                    #     style={"marginTop": -15},
+                    # ),
                 ],
                 value=source.all_type_well
             ),

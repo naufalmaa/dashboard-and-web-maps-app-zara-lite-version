@@ -76,12 +76,12 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         color="dark",
                         style={"marginTop": -15},
                     ),
-                    dmc.Checkbox(
-                        label="Abandoned",
-                        value="Abandoned",
-                        color="dark",
-                        style={"marginTop": -15},
-                    ),
+                    # dmc.Checkbox(
+                    #     label="Abandoned",
+                    #     value="Abandoned",
+                    #     color="dark",
+                    #     style={"marginTop": -15},
+                    # ),
                 ],
                 value=source.unique_status,
                 style={"width": "98%", "paddingBottom": "20px"},
