@@ -14,13 +14,13 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
         children=[
             # div wl-main-filter
             html.Div(
-                className=cns.WL_MAIN_FILTER,
+                className=cns.GNG_WELL_LOG_MAIN_FILTER,
                 children=[
                     dmc.Accordion(
                         value="well-log filter",
                         radius=10,
                         variant="contained",
-                        className=cns.WL_ACCORDION_FILTER,
+                        className=cns.GNG_WELL_LOG_ACCORDION_FILTER,
                         children=[
                             dmc.AccordionItem(
                                 [
@@ -44,10 +44,9 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
             ),
             # div wl-main-graph
             html.Div(
-                className=cns.WL_MAIN_GRAPHS,
+                className=cns.GNG_WELL_LOG_GRAPHS,
                 children=[
                     html.H1("Well-Log"),
-                    # well_log_filter.render(app, source),
                     well_log_graph.render(app, source),
                 ],
             ),

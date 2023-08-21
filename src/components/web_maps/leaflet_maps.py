@@ -67,10 +67,11 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                     style={
                                         # 'z-index':'0',
                                         'width': '100%',
-                                        'height': '1400px',
-                                        'marginLeft':'0px',
+                                        'height': '800px',
+                                        # 'marginLeft':'0px',
                                         # 'float':'right'
-                                    })
+                                    }
+                                    )
         
         elif series_geometry.empty:
             return dl.Map(children=[
@@ -84,10 +85,11 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                     style={
                                         # 'z-index':'0',
                                         'width': '100%',
-                                        'height': '1400px',
-                                        'marginLeft':'0px',
+                                        'height': '800px',
+                                        # 'marginLeft':'0px',
                                         # 'float':'right'
-                                    })
+                                    }
+                                    )
             
         elif series_geometry_well.empty:
             return dl.Map(children=[
@@ -101,10 +103,11 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                     style={
                                         # 'z-index':'0',
                                         'width': '100%',
-                                        'height': '1400px',
-                                        'marginLeft':'0px',
+                                        'height': '800px',
+                                        # 'marginLeft':'0px',
                                         # 'float':'right'
-                                    })
+                                    }
+                                    )
         
         
         
@@ -120,9 +123,10 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                 style={
                                     # 'z-index':'0',
                                     'width': '100%',
-                                    'height': '1400px',
-                                    'marginLeft':'0px',
+                                    'height': '800px',
+                                    # 'marginLeft':'0px',
                                     # 'float':'right'
-                                })
+                                }
+                                )
     
     return html.Div(id=ids.MAP_LAYOUT)

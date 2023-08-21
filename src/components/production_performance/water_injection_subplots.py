@@ -38,7 +38,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             return html.Div(
                 dcc.Graph(figure=empty_fig),
                 id=ids.WATER_INJECTION_SUBPLOTS,
-                className=cns.PPD_SECOND_CHART_RIGHT_GRID,
+                className=cns.PPD_WATER_INJECTION_SUBPLOTS,
             )
 
         filtered_pt_wi_well = source.filter(
@@ -168,9 +168,9 @@ def render(app: Dash, source: DataSource) -> html.Div:
         return html.Div(
             dcc.Graph(figure=figure),
             id=ids.WATER_INJECTION_SUBPLOTS,
-            className=cns.PPD_THIRD_CHART_RIGHT_GRID,
+            className=cns.PPD_WATER_INJECTION_SUBPLOTS,
         )
 
     return html.Div(
-        id=ids.WATER_INJECTION_SUBPLOTS, className=cns.PPD_THIRD_CHART_RIGHT_GRID
+        id=ids.WATER_INJECTION_SUBPLOTS, className=cns.PPD_WATER_INJECTION_SUBPLOTS
     )

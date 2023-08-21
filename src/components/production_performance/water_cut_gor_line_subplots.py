@@ -36,7 +36,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             return html.Div(
                 dcc.Graph(figure=empty_fig),
                 id=ids.WATER_CUT_GOR_SUBPLOTS,
-                className=cns.PPD_THIRD_CHART_RIGHT_GRID,
+                className=cns.PPD_WATER_CUT_GOR_SUBPLOTS,
             )
 
         filtered_pt_cum_wc_date = source.filter(
@@ -113,9 +113,9 @@ def render(app: Dash, source: DataSource) -> html.Div:
         return html.Div(
             dcc.Graph(figure=fig),
             id=ids.WATER_CUT_GOR_SUBPLOTS,
-            className=cns.PPD_THIRD_CHART_RIGHT_GRID,
+            className=cns.PPD_WATER_CUT_GOR_SUBPLOTS,
         )
 
     return html.Div(
-        id=ids.WATER_CUT_GOR_SUBPLOTS, className=cns.PPD_THIRD_CHART_RIGHT_GRID
+        id=ids.WATER_CUT_GOR_SUBPLOTS, className=cns.PPD_WATER_CUT_GOR_SUBPLOTS
     )

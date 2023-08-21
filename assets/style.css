@@ -16,22 +16,33 @@ body {
     color: #112D4E;
 }
 
+/* FOR WEB CONTAINER */
 .web-container {
     width: 100%;
-    height: 1080px;
+    /* height: auto; */
     margin: auto;
     display: grid;
     gap: 10px;
 }
 
-.navbar, .map-leaflet, .ppd-production-filter, .ppd-main-graphs, .footer-web {
-    /* border: 3px solid black; */
+/* .navbar, .map-leaflet, .ppd-production-filter, .ppd-main-graphs, .footer-web {
+    border: 3px solid black;
+} */
+
+/* OVERALL WEB-MAPS */
+.map-container {
+    padding: 10px;
 }
 
-/* LEFT SIDE MAP (FILTER MAP) */
+.map-wrapper{
+    padding: 10px;
+}
+
+/* LEFT GRID-SIDE MAP (FILTER MAP) */
 
 .left-side-map {
-    padding: 20px 80px 80px;
+    grid-column: 1/3;
+    padding: 20px;
 }
 
 .title-summary-layout h4 {
@@ -50,7 +61,6 @@ body {
     padding: 0;
 }
 
-
 .summary-block {
     width: 95%;
     padding-top: 10px;
@@ -64,18 +74,38 @@ body {
     padding-bottom: 20px;
 }
 
-/* Production filter right side graphs */
-.ppd-production-filter{
-    margin-right: 20px;
+/* RIGHT GRID-SIDE MAP */
+
+.map-leaflet {
+    /* width: 66%; */
+    padding: 10px;
 }
 
+/* Overall Production Performance Dashboard */
+.ppd-container{
+    padding: 10px;
+}
+
+.ppd-wrapper{
+    padding: 10px;
+}
+
+/* Production filter left grid-side */
+.ppd-production-filter{
+    padding: 10px;
+    /* margin-right: 20px 80px 80px; */
+}
+
+/* Production main graphs right grid-side graphs */
 .ppd-summary-card-left-grid{
-    margin: 20px 20px 20px 20px;
+    padding: 10px;
+    /* margin: 20px 20px 20px 20px; */
 }
 
 .ppd-main-graphs{
+    padding: 10px;
     /* padding-right: 30px; */
-    margin-left: 30px;
+    /* margin-left: 30px; */
     /* margin-right: 20px; */
 }
     /* border: 2px solid #DEE2E6;
@@ -127,23 +157,36 @@ body {
     width: 100%;
 }
 
-/* well log */
-.wl-main-filter{
+/* Overall GnG Analysis Dashboard */
+.gng-container{
+    padding: 10px;
+}
+
+.gng-wrapper{
+    padding: 10px;
+}
+
+
+/* GnG filter left grid-side */
+
+.gng-well-log-main-filter{
     margin-right: 20px;
 }
 
-.wl-accordion-filter{
+.gng-well-log-accordion-filter{
     margin: 20px 80px 80px;
 }
 
-.wl-main-graphs {
+/* GnG main graphs right grid-side */
+
+/* .gng-well-log-graphs {
     margin-left: 30px;
-}
+} */
 
 
 
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 
     .web-container {
         grid-template-columns: repeat(12, 1fr);
@@ -194,76 +237,150 @@ body {
         margin-left: 0px;
     }
 
-} */
+}
 
-/* @media (min-width: 1080px){
+@media (min-width: 1080px){
 
     .web-container {
         grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: 70px 1500px 2600px 100px;
+        grid-template-rows: 70px 1500px 2000px 70px;
     }
 
-    .web-container .navbar {
+    .navbar {
         grid-column: 1/13;
     }
 
-    .web-container .left-side-map {
+    .map-container {
+        grid-column: 1/13;
+    }
+
+    .left-side-map {
         grid-column: 1/5;
     }
 
-    .web-container .map-leaflet {
+    .map-leaflet {
         grid-column: 5/13;
     }
 
-    .web-container .ppd-tabs {
-        grid-row: 3/4;
+    .ppd-tabs {
+        grid-column: 1/13;
     }
 
-    .web-container .ppd-main-graphs {
-        grid-column: 1/9;
+    .ppd-main-graphs {
+        grid-column: 5/13;
         grid-row: 4/5;
     }
 
-    .web-container .ppd-production-filter {
-        grid-column: 9/13;
+    .ppd-production-filter {
+        grid-column: 1/5;
         grid-row: 4/5;
     }
 
-    .web-container .wl-main-graphs {
-        grid-column: 1/9;
+    .wl-main-graphs {
+        grid-column: 5/13;
         grid-row: 4/5;
     }
 
-    .web-container .wl-main-filter {
-        grid-column: 9/13;
+    .wl-main-filter {
+        grid-column: 1/5;
         grid-row: 4/5;
     }
 
-    .web-container .footer-web {
+    .footer-web {
         grid-column: 1/13;
         grid-row: 74/75;
     }
 
-}
+} */
 
-/* @media (min-width: 1080px){
+
+@media (min-width: 1080px) {
 
     .web-container {
-        grid-template-columns: auto;
+        grid-template-columns: repeat(12, 1fr);
         grid-template-rows: auto;
     }
 
     .web-container .navbar {
+        grid-column: 1/13;
+    }
+
+    /* basic webmaps */
+    .web-container .map-container {
+        grid-column: 1/13;
+    }
+
+    .web-container .map-container .map-wrapper {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: auto;
+    }
+
+    /* left grid-side map*/
+    .web-container .map-container .map-wrapper .left-side-map {
         grid-column: 1/4;
     }
+
+    /* right grid-side map*/
+    .web-container .map-container .map-wrapper .map-leaflet {
+        grid-column: 4/9;
+    }
+
+    /* tabs */
+    .web-container .main-tabs {
+        grid-column: 1/13;
+    }
+
+    .web-container .main-tabs .main-tablist {
+        grid-column: 1/13;
+    }
+
+    /* production performance dashboard */
+    /* .web-container .main-tabs .main-tablist .ppd-container{
+        grid-column: 1/13;
+    } */
+
+    .web-container .ppd-wrapper{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+    }
+
+    /* left grid-side of production performance dashboard */
+    .web-container .ppd-wrapper .ppd-production-filter{
+        grid-column: 1/5;
+    }
+
+    /* right grid-side of production performance dashboard*/
+    .web-container .ppd-wrapper .ppd-main-graphs{
+        grid-column: 5/13;
+    }
+
+    /* gng analysis dashboard */
+    /* left grid-side of gng analysis dashboard */
+    .web-container .gng-wrapper{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+    }
+
+    /* left grid-side of gng analysis dashboard */
+    .web-container .gng-wrapper .gng-well-log-main-filter{
+        grid-column: 1/5;
+    }
+
+    /* right grid-side of gng analysis dashboard*/
+    .web-container .gng-wrapper .gng-well-log-graphs{
+        grid-column: 5/13;
+    }
+
 
 
     .web-container .footer-web {
-        grid-column: 1/4;
+        grid-column: 1/13;
     }
 
-} */
-
+}
 
 /* Mantine styles API */
 

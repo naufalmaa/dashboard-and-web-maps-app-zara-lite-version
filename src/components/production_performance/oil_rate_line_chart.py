@@ -36,7 +36,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             return html.Div(
                 dcc.Graph(figure=empty_fig),
                 id=ids.OIL_RATE_LINE_CHART,
-                className=cns.PPD_FIRST_CHART_LEFT_GRID,
+                className=cns.PPD_OIL_RATE_LINE_CHART,
             )
 
         filtered_source_pt = source.filter(
@@ -74,7 +74,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         return html.Div(
             dcc.Graph(figure=fig),
             id=ids.OIL_RATE_LINE_CHART,
-            className=cns.PPD_FIRST_CHART_LEFT_GRID,
+            className=cns.PPD_OIL_RATE_LINE_CHART,
         )
 
-    return html.Div(id=ids.OIL_RATE_LINE_CHART, className=cns.PPD_FIRST_CHART_LEFT_GRID)
+    return html.Div(id=ids.OIL_RATE_LINE_CHART, className=cns.PPD_OIL_RATE_LINE_CHART)

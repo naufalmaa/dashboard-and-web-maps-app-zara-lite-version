@@ -26,12 +26,13 @@ def render(app: Dash, source: DataSource) -> html.Div:
         return source.filter(from_date=from_date, to_date=to_date).unique_wells
         
     return html.Div(
+        className=cns.PPD_MULTISELECT_WRAPPER,
         children=[
             html.H5("Well:", className=cns.PPD_H5),
             
             dmc.MultiSelect(
                 id=ids.WELL_MAIN_MULTISELECT,
-                className="",
+                className=cns.PPD_MULTISELECT_MULTISELECT,
                 data=to_multiselect_options(source.unique_wells),
                 value=source.unique_wells,
                 placeholder="Select Wells",
@@ -43,7 +44,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             dmc.Button(
                 'Select All',
                 id=ids.SELECT_ALL_WELLS_MAIN_BUTTON,
-                className="",
+                className=cns.PPD_MULTISELECT_BUTTON,
                 variant="outline",
                 color="dark",
                 radius="5px",
@@ -51,6 +52,5 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 style={'height':'30px','marginBottom':'15px'},
                 n_clicks=0,
             ),
-            
         ]
     )

@@ -36,7 +36,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             return html.Div(
                 dcc.Graph(figure=empty_fig),
                 id=ids.DP_CS_VS_AVG_DP_SUBPLOTS,
-                className=cns.PPD_FIFTH_CHART_RIGHT_GRID,
+                className=cns.PPD_DP_CS_VS_AVG_DP_SUBPLOTS,
             )
 
         filtered_pt_choke_size_date = source.filter(
@@ -119,9 +119,9 @@ def render(app: Dash, source: DataSource) -> html.Div:
         return html.Div(
             dcc.Graph(figure=figure),
             id=ids.DP_CS_VS_AVG_DP_SUBPLOTS,
-            className=cns.PPD_FIFTH_CHART_RIGHT_GRID,
+            className=cns.PPD_DP_CS_VS_AVG_DP_SUBPLOTS,
         )
 
     return html.Div(
-        id=ids.DP_CS_VS_AVG_DP_SUBPLOTS, className=cns.PPD_FIFTH_CHART_RIGHT_GRID
+        id=ids.DP_CS_VS_AVG_DP_SUBPLOTS, className=cns.PPD_DP_CS_VS_AVG_DP_SUBPLOTS
     )

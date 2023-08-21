@@ -143,7 +143,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 html.Div(  # graph for well-log data
                     dcc.Graph(figure=figure),
                     id=ids.WELL_LOG_FIRST_GRAPH,
-                    className=cns.WL_FIRST_GRAPH,
+                    className=cns.GNG_WELL_LOG_GRAPHS,
                 ),
             )
 
@@ -152,7 +152,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
     return html.Div(
         id=ids.WELL_LOG_FIRST_GRAPH,
-        className=cns.WL_FIRST_GRAPH,
+        className=cns.GNG_WELL_LOG_GRAPHS,
         # children=[
         #     html.H1(
         #         "Well-Log Graph",

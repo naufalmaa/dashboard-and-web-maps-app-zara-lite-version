@@ -202,10 +202,10 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                             dmc.Tab("Geology & Geophysics Analysis", value="3"),
                             dmc.Tab("Cost Analysis", value="4"),
                         ],
-                        className=cns.PPD_TABLIST,
+                        className=cns.MAIN_TABLIST,
                     ),
                     # overview (chatbot, preview data, about data)
-                    dmc.TabsPanel("AAAAAAAA", value="1", className=cns.PPD_TABSPANEL),
+                    dmc.TabsPanel("AAAAAAAA", value="1", className=cns.OVW_CONTAINER),
                     
                     # tabs for production performance analysis
                     dmc.TabsPanel(production_performance_layout.create_layout(app, source), value="2", className=cns.PPD_CONTAINER),
@@ -214,11 +214,11 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                     dmc.TabsPanel(gng_layout.create_layout(app, source), value="3", className=cns.GNG_CONTAINER),
                     
                     # tabs for cost analysis
-                    dmc.TabsPanel("DD", value="4", className=cns.PPD_TABSPANEL),
+                    dmc.TabsPanel("DD", value="4", className=cns.CAD_CONTAINER),
                 ],
                 value="2",
                 variant="outline",
-                className=cns.PPD_TABS,
+                className=cns.MAIN_TABS,
             ),
             # # div ppd-production filter (content{4})
             # html.Div(
