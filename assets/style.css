@@ -146,7 +146,7 @@ body {
 
     .web-container {
         grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: 70px 1300px 1400px 400px 2630px 500px 800px 100px;
+        grid-template-rows: 70px 1900px 1400px 200px 400px 2630px 500px 800px 100px;
     }
 
     .web-container .navbar {
@@ -158,6 +158,10 @@ body {
     }
 
     .web-container .map-leaflet {
+        grid-column: 1/13;
+    }
+
+    .web-container .ppd-tabs {
         grid-column: 1/13;
     }
 
@@ -191,7 +195,7 @@ body {
 
     .web-container {
         grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: 70px 1500px 2600px 100px;
+        grid-template-rows: 70px 2000px 2600px 100px;
     }
 
     .web-container .navbar {
@@ -205,6 +209,11 @@ body {
     .web-container .map-leaflet {
         grid-column: 5/13;
     }
+
+    .web-container .ppd-tabs {
+        grid-row: 3/4;
+    }
+
 
     .web-container .ppd-main-graphs {
         grid-column: 1/9;

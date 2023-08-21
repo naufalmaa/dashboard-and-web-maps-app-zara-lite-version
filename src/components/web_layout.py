@@ -21,9 +21,19 @@ from .production_performance import (
     to_date_datepicker,
 )
 
-from .gng_analysis import well_log_filter, well_log_graph, well_log_layout
+from .gng_analysis import (
+    well_log_filter, 
+    well_log_graph, 
+    well_log_layout
+)
 
-from .web_maps import filter_maps, restart_button, leaflet_maps, filter_well_maps, restart_well_button
+from .web_maps import (
+    filter_maps, 
+    restart_button, 
+    leaflet_maps, 
+    filter_well_maps, 
+    restart_well_button
+)
 
 from .web_maps.data_color_map import colormap
 
@@ -32,9 +42,12 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
     return html.Div(
         className=cns.WEB_CONTAINER,
         children=[
+            
             # div navbar (header(1))
+            
             html.Div(className=cns.NAVBAR, children=[html.H1("Navigation Bar")]),
-            # div left-side map (content(2))
+            
+            # div left-side map (content(2)) map filter
             html.Div(
                 className=cns.LEFT_SIDE_MAP,
                 children=[
@@ -155,7 +168,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                                                 )
                                             ),
                                         ],
-                                        value="block filter",
+                                        value="well filter",
                                     )
                                 ],
                             ),
@@ -169,6 +182,29 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
             html.Div(
                 className=cns.MAP_LEAFLET, children=[leaflet_maps.render(app, source)]
             ),
+            
+            # div for tab and tab list after map
+            dmc.Tabs(
+                [
+                    dmc.TabsList(
+                        [
+                            dmc.Tab("Overview", value="1"),
+                            dmc.Tab("Production Performance Analysis", value="2"),
+                            dmc.Tab("Geology & Geophysics Analysis", value="3"),
+                            dmc.Tab("Cost Analysis", value="4")
+                            
+                        ],
+                        className=cns.PPD_TABLIST
+                    ),
+                    dmc.TabsPanel("AAAAAAAA", value="1", className=cns.PPD_TABSPANEL),
+                    dmc.TabsPanel("BBBB", value="2",className=cns.PPD_TABSPANEL),
+                    dmc.TabsPanel("C", value="3", className=cns.PPD_TABSPANEL),
+                    dmc.TabsPanel("DD", value="4", className=cns.PPD_TABSPANEL),
+                ],
+                value="3",
+                className=cns.PPD_TABS
+            ),
+            
             # div ppd-production filter (content{4})
             html.Div(
                 className=cns.PPD_PRODUCTION_FILTER,
