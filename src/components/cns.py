@@ -25,6 +25,9 @@ FOOTER_WEB = 'footer-web'
 
 # on web_maps_layout.py
 
+MAP_CONTAINER = "map-container"
+MAP_WRAPPER = "map-wrapper"
+
 MAP_ALL_WRAPPER = 'map-all-wrapper'
 
 # left side map
@@ -52,6 +55,9 @@ PPD_TABSPANEL = "ppd-tabspanel"
 ########################################################################
 
 # on production_performance_layout.py
+# div main container for ppd
+PPD_CONTAINER = "ppd-container"
+PPD_WRAPPER = "ppd-wrapper"
 # div main wrapper
 PPD_MAIN_WRAPPER = "ppd-main-wrapper"
 
@@ -114,7 +120,11 @@ PPD_FIFTH_CHART_RIGHT_GRID = "ppd-fifth-chart-right-grid"
 
 ########################################################################
 ########################################################################
-# well log
+# gng analysis
+
+GNG_CONTAINER = "gng-container"
+GNG_WRAPPER = "gng-wrapper"
+
 WL_MAIN_FILTER = "wl-main-filter"
 WL_ACCORDION_FILTER = "wl-accordion-filter"
 
