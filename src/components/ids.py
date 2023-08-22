@@ -66,14 +66,25 @@ OIL_VS_WATER_SUBPLOTS = "oil-vs-water-subplots"
 DP_CS_VS_AVG_DP_SUBPLOTS = "dp-cs-vs-avg-dp-subplots"
 
 # ----------------------------------------------------------------
+# gng
+
 # well-log
 WELL_LOG_PARAMETER_CHECKBOX = "checkbox-parameter-well-log"
 WELL_LOG_RESET_FILTER_BUTTON = "reset-filter-well-log"
 WELL_LOG_SELECT = "select-well-log"
 
-
-
 WELL_LOG_FIRST_GRAPH = "output-graph-well-log"
+
+# 3d wells graph
+LITH_3D_FILTER = "lith-3d-filter"
+LITH_3D_GRAPH = "lith-3d-graph"
+
+WELLS_3D_FILTER = "wells-3d-filter"
+WELLS_3D_GRAPH = "wells-3d-graph"
+
+WELLS_LITH_3D_RESET_FILTER_BUTTON = "wells-3d-reset-filter-button"
+
+
 
 # ----------------------------------------------------------------
 # untuk CSS

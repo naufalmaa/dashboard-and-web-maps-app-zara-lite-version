@@ -148,8 +148,26 @@ PPD_DP_CS_VS_AVG_DP_SUBPLOTS = "ppd-dp-cs-vs-avg-dp-subplots"
 
 # on gng_layout.py
 GNG_WRAPPER = "gng-wrapper"
-GNG_WELL_LOG_MAIN_FILTER = "gng-well-log-main-filter"
+GNG_MAIN_FILTER = "gng-main-filter"
+
 GNG_WELL_LOG_ACCORDION_FILTER = "gng-well-log-accordion-filter"
+GNG_WELLS_3D_ACCORDION_FILTER = "gng-wells-3d-accordion-filter"
+
+GNG_MAIN_GRAPHS = "gng-main-graphs"
+GNG_GRAPH_TITLE = "gng-graph-title"
+GNG_COMPARISON_GRAPHS = "gng-comparison-graphs"
 
 # on well_log_graph.py
 GNG_WELL_LOG_GRAPHS = "gng-well-log-graphs"
+
+# on lithology_distribution_3d_filter.py
+GNG_LITH_3D_FILTER = "gng-lith-3d-filter"
+
+# on lithology_distribution_3d_graph.py
+GNG_LITH_3D_GRAPH = "gng-lith-3d-graph"
+
+# on wells_3d_filter.py
+GNG_WELLS_3D_FILTER = "gng-wells-3d-filter"
+
+# on wells_3d_graph.py
+GNG_WELLS_3D_GRAPH = "gng-wells-3d-graph"

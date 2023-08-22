@@ -234,6 +234,32 @@ class DataSource:
     # property for filtering data
     # property it's about something that we really need to do with all the properties of the dataframe:)
     # basic = create dataframe of pandas to be called
+    
+    # get production data
+    @property
+    def df_production(self):
+        df = pd.DataFrame(self._data)
+        return df
+    
+    # get log data
+    @property
+    def df_log(self):
+        df = pd.DataFrame(self._data_log)
+        return df
+    
+    # get block gpd data
+    @property
+    def gdf_blocks(self):
+        gdf = gpd.GeoDataFrame(self._geodata_blocks)
+        return gdf
+    
+    # get wells gpd data
+    @property
+    def gdf_wells(self):
+        gdf = gpd.GeoDataFrame(self._geodata_wells)
+        return gdf
+    
+    
     @property
     def to_dataframe(self):
         dataframe = pd.DataFrame(self._data)

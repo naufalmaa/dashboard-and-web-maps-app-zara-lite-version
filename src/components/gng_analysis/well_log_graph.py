@@ -21,9 +21,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         Output(component_id=ids.WELL_LOG_FIRST_GRAPH, component_property="children"),
         [
             Input(component_id=ids.WELL_LOG_SELECT, component_property="value"),
-            Input(
-                component_id=ids.WELL_LOG_PARAMETER_CHECKBOX, component_property="value"
-            ),
+            Input(component_id=ids.WELL_LOG_PARAMETER_CHECKBOX, component_property="value"),
         ],
         prevent_initial_call=True,
     )

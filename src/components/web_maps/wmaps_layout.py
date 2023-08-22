@@ -129,7 +129,7 @@ def create_layout_map(app: Dash, source: DataSource) -> html.Div:
                                     dmc.AccordionItem(
                                         [
                                             dmc.AccordionControl(
-                                                "Well Filter",
+                                                "Well-Monitoring Filter",
                                                 icon=DashIconify(
                                                     icon="material-symbols:pin-drop-outline",
                                                     width=20,

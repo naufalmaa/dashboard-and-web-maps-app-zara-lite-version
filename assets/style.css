@@ -141,7 +141,7 @@ body {
 }
 
 .ppd-accordion-filter{
-    margin: 20px 80px 80px;
+    margin: 20px 80px 80px ;
 }
 
 .ppd-to-date-picker-wrapper{
@@ -169,15 +169,24 @@ body {
 
 /* GnG filter left grid-side */
 
-.gng-well-log-main-filter{
-    margin-right: 20px;
-}
 
 .gng-well-log-accordion-filter{
-    margin: 20px 80px 80px;
+    margin: 30px 90px 90px;
+}
+
+.gng-wells-3d-accordion-filter{
+    margin: 30px 90px 90px 90px;
 }
 
 /* GnG main graphs right grid-side */
+
+.gng-graph-title {
+    text-align: center;
+}
+
+.gng-comparison-graphs {
+    padding: 10px;
+}
 
 /* .gng-well-log-graphs {
     margin-left: 30px;
@@ -239,59 +248,7 @@ body {
 
 }
 
-@media (min-width: 1080px){
-
-    .web-container {
-        grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: 70px 1500px 2000px 70px;
-    }
-
-    .navbar {
-        grid-column: 1/13;
-    }
-
-    .map-container {
-        grid-column: 1/13;
-    }
-
-    .left-side-map {
-        grid-column: 1/5;
-    }
-
-    .map-leaflet {
-        grid-column: 5/13;
-    }
-
-    .ppd-tabs {
-        grid-column: 1/13;
-    }
-
-    .ppd-main-graphs {
-        grid-column: 5/13;
-        grid-row: 4/5;
-    }
-
-    .ppd-production-filter {
-        grid-column: 1/5;
-        grid-row: 4/5;
-    }
-
-    .wl-main-graphs {
-        grid-column: 5/13;
-        grid-row: 4/5;
-    }
-
-    .wl-main-filter {
-        grid-column: 1/5;
-        grid-row: 4/5;
-    }
-
-    .footer-web {
-        grid-column: 1/13;
-        grid-row: 74/75;
-    }
-
-} */
+*/
 
 
 @media (min-width: 1080px) {
@@ -319,6 +276,8 @@ body {
     /* left grid-side map*/
     .web-container .map-container .map-wrapper .left-side-map {
         grid-column: 1/4;
+        overflow: auto;
+        max-height: 815px;
     }
 
     /* right grid-side map*/
@@ -358,6 +317,7 @@ body {
 
     /* gng analysis dashboard */
     /* left grid-side of gng analysis dashboard */
+    
     .web-container .gng-wrapper{
         display: grid;
         grid-template-columns: repeat(12, 1fr);
@@ -365,13 +325,27 @@ body {
     }
 
     /* left grid-side of gng analysis dashboard */
-    .web-container .gng-wrapper .gng-well-log-main-filter{
+    .web-container .gng-wrapper .gng-main-filter{
         grid-column: 1/5;
     }
 
     /* right grid-side of gng analysis dashboard*/
-    .web-container .gng-wrapper .gng-well-log-graphs{
+    .web-container .gng-wrapper .gng-main-graphs{
         grid-column: 5/13;
+    }
+
+    /* .web-container .gng-wrapper .gng-comparison-graph{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+    } */
+
+    .web-container .gng-wrapper .gng-comparison-graph .gng-lith-3d-graph{
+        grid-column: 3/7;
+    }
+
+    .web-container .gng-wrapper .gng-comparison-graph .gng-wells-3d-graph{
+        grid-column: 7/11;
     }
 
 
