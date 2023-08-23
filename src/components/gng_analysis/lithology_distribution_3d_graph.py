@@ -24,25 +24,25 @@ def render(app: Dash, source: DataSource) -> html.Div:
     def update_3d_graph(params_chosen):
         wells_3d_data = source.df_log
         
-        if params_chosen is not None:
+        # if params_chosen is not None:
             
-            figure = px.scatter_3d(
-                wells_3d_data,
-                x=LogDataSchema.X,
-                y=LogDataSchema.Y,
-                z=LogDataSchema.Z,
-                color=params_chosen,
-                color_continuous_scale=px.colors.sequential.Aggrnyl,
-                color_discrete_sequence=px.colors.qualitative.Safe,
-            )
-        
-            return html.Div(
-                dcc.Graph(figure=figure),
-                id=ids.LITH_3D_GRAPH,
-                className=cns.GNG_LITH_3D_GRAPH,
-            )
-        else:
-            pass
+        figure = px.scatter_3d(
+            wells_3d_data,
+            x=LogDataSchema.X,
+            y=LogDataSchema.Y,
+            z=LogDataSchema.Z,
+            color=params_chosen,
+            color_continuous_scale=px.colors.sequential.Aggrnyl,
+            color_discrete_sequence=px.colors.qualitative.Safe,
+        )
+    
+        return html.Div(
+            dcc.Graph(figure=figure),
+            id=ids.LITH_3D_GRAPH,
+            className=cns.GNG_LITH_3D_GRAPH,
+        )
+        # else:
+        #     pass
 
     return html.Div(
         id=ids.LITH_3D_GRAPH,
