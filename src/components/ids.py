@@ -23,6 +23,28 @@ RESTART_FILTER_WELL_MAP = 'reset_well'
 MAP_LAYOUT = 'map-layout'
 
 # ----------------------------------------------------------------
+# Overview
+
+# filters
+FROM_DATE_DATEPICKER_OVERVIEW = 'from_date-datepicker-overview'
+ALL_DATES_BEFORE_CHECKBOX_OVERVIEW = 'all_dates-before-checkbox-overview'
+TO_DATE_DATEPICKER_OVERVIEW = 'to-date-datepicker-overview'
+ALL_DATES_AFTER_CHECKBOX_OVERVIEW = 'all-dates-after-checkbox-overview'
+
+BLOCK_MULTISELECT_FILTER_OVERVIEW = 'block-multiselect-filter-overview'
+SELECT_ALL_BLOCK_BUTTON_OVERVIEW = 'select-all-block-button-overview'
+
+
+
+# Summary Card
+TOTAL_OIL_BLOCKS_AMOUNT_CARD = 'total-oil-blocks-amount-card'
+TOTAL_OPERATORS_AMOUNT_CARD = 'total-operators-amount-card'
+TOTAL_NUM_OF_WELLS_AMOUNT_CARD = 'total-num-of-wells-amount-card'
+AVG_OIL_PRODUCTION_MONTH_AMOUNT_CARD = 'avg-oil-production-amount-card'
+AVG_GAS_PRODUCTION_MONTH_AMOUNT_CARD = 'avg-gas-production-amount-card'
+AVG_DEPTH_AMOUNT_CARD = 'avg-depth-amount-card'
+
+# ----------------------------------------------------------------
 
 # Production
 # filtering tools

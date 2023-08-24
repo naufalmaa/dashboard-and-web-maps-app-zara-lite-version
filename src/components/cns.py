@@ -71,6 +71,45 @@ MAP_LEAFLET = 'map-leaflet'
 
 ########################################################################
 ########################################################################
+
+# on oveerview components
+# prev on web_layout.py
+# OVW_CONTAINER = 'overview-container'
+
+# on overview_layout.py
+OVW_WRAPPER = 'overview-wrapper'
+OVW_FILTER = 'overview-filter'
+OVW_ACCORDION_FILTER = 'overview-accordion-filter'
+OVW_MAIN_CONTENT = 'overview-main-content'
+
+# on block_multiselect_filter.py
+OVW_MULTISELECT_WRAPPER = 'overview-multiselect-wrapper'
+OVW_MULTISELECT_MULTISELECT = 'overview-multiselect-multiselect'
+OVW_MULTISELECT_BUTTON = 'overview-multiselect-button'
+
+# on from_date_datepicker_filter.py
+OVW_FROM_DATE_PICKER_WRAPPER = 'overview-from-date-picker-wrapper'
+OVW_FROM_DATE_PICKER_DATEPICKER = 'overview-from-date-picker-datepicker'
+OVW_ALL_DATE_PICKER_CHECKBOX = 'overview-all-date-picker-checkbox'
+
+# on to_date_datepicker_filter.py
+OVW_TO_DATE_PICKER_WRAPPER = 'overview-to-date-picker-wrapper'
+OVW_TO_DATE_PICKER_DATEPICKER = 'overview-to-date-picker-datepicker'
+# OVW_ALL_DATE_PICKER_CHECKBOX = 'overview-all-date-picker-checkbox'
+
+# on overview_summary_card.py
+OVW_SUMMARY_CARD_WRAPPER = 'overview-summary-card-wrapper'
+OVW_SC_CARDSECTION = 'overview-summary-card-cardsection'
+OVW_SC_SIMPLEGRID = 'overview-summary-card-simplegrid'
+OVW_SC_GROUP = 'overview-summary-card-group'
+OVW_SC_CARD = 'overview-summary-card-card'
+
+OVW_SC_ICON = 'overview-summary-card-icon'
+OVW_SC_TITLE = 'overview-summary-card-title'
+OVW_SC_TEXT = 'overview-summary-card-text'
+
+########################################################################
+########################################################################
 # on production_performance components
 
 # prev on web_layout.py

@@ -84,6 +84,7 @@ class allWELLS:
     PURPOSE_WELL = 'purpose'
     TYPE_WELL = 'type'
     GEOMETRY_WELL = 'geometry'
+    BLOCK_WELL = 'block'
     TOOLTIP = 'tooltip'
     POPUP = 'popup'
 
