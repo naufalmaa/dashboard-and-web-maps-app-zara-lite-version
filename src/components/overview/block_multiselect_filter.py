@@ -9,21 +9,24 @@ from ...data.source import DataSource
 
 from .. import ids, cns
 
-# from .multiselect_helper import to_multiselect_options
+from ..production_performance.multiselect_helper import to_multiselect_options
     
 def render(app: Dash, source: DataSource) -> html.Div:
     
-    # @app.callback(
-    #     Output(ids.WELL_MAIN_MULTISELECT, "value"),
-    #     [
-    #         Input(ids.FROM_DATE_DATEPICKER, "value"),
-    #         Input(ids.TO_DATE_DATEPICKER, "value"),
-    #         Input(ids.SELECT_ALL_WELLS_MAIN_BUTTON, "n_clicks")
-    #     ],
-    # )
+    @app.callback(
+        Output(ids.BLOCK_MULTISELECT_FILTER_OVERVIEW, "value"),
+        [
+            Input(ids.FROM_DATE_DATEPICKER_OVERVIEW, "value"),
+            Input(ids.TO_DATE_DATEPICKER_OVERVIEW, "value"),
+            Input(ids.SELECT_ALL_BLOCK_BUTTON_OVERVIEW, "n_clicks")
+        ],
+    )
     
-    # def select_all_wells(from_date: str, to_date: str, _: int) -> list[str]:
-    #     return source.filter(from_date=from_date, to_date=to_date).unique_wells
+    def select_all_blocks(from_date: str, to_date: str, _: int) -> list[str]:
+        filter_unique_blocks = source.filter_overview(from_date=from_date, to_date=to_date).unique_blocks
+        
+        
+        return filter_unique_blocks
         
     return html.Div(
         className=cns.OVW_MULTISELECT_WRAPPER,
@@ -33,14 +36,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
             dmc.MultiSelect(
                 id=ids.BLOCK_MULTISELECT_FILTER_OVERVIEW,
                 className=cns.OVW_MULTISELECT_MULTISELECT,
-                data=[
-                        {'label':'Center-Block', 'value':'Center-Block'},
-                        {'label':'East-Block', 'value':'East-Block'},
-                        {'label':'North-Block', 'value':'North-Block'},
-                        {'label':'South-Block', 'value':'South-Block'},
-                        {'label':'West-Block', 'value':'West-Block'}
-                    ],
-                value=['Center-Block', 'East-Block', 'North-Block', 'South-Block', 'West-Block'],
+                data=to_multiselect_options(source.unique_blocks),
+                value=source.unique_blocks,
                 placeholder="Select Blocks",
                 searchable=True,
                 clearable=True,

@@ -10,18 +10,18 @@ from .. import ids, cns
 
 def render(app: Dash, source: DataSource) -> html.Div:
     
-    # @app.callback(
-    #     Output(ids.FROM_DATE_DATEPICKER_OVERVIEW, "value"),
-    #     [
-    #         Input(ids.ALL_DATES_BEFORE_CHECKBOX, "checked")
-    #     ], prevent_initial_call=True
-    # )
+    @app.callback(
+        Output(ids.FROM_DATE_DATEPICKER_OVERVIEW, "value"),
+        [
+            Input(ids.ALL_DATES_BEFORE_CHECKBOX_OVERVIEW, "checked")
+        ], prevent_initial_call=True
+    )
     
-    # def select_earliest_date(checked: bool) -> str:
-    #     if checked == True:
-    #         return source.earliest_date
-    #     if checked == False:
-    #         pass
+    def select_earliest_date(checked: bool) -> str:
+        if checked == True:
+            return source.earliest_date
+        if checked == False:
+            pass
     
     return html.Div(
         className=cns.OVW_FROM_DATE_PICKER_WRAPPER,

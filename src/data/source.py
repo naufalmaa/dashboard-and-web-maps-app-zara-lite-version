@@ -99,6 +99,64 @@ class DataSource:
             & (self._geodata_wells[allWELLS.TYPE_WELL].isin(type_well))
         ]
         return DataSource(filtered_well_data)
+    
+    # # 250823
+    # for filter overview
+    def filter_overview(
+        self,
+        from_date: Optional[str] = None,
+        to_date: Optional[str] = None,
+        blocks: Optional[list[str]] = None,
+    ) -> DataSource:
+        if from_date is None:
+            from_date = self.unique_from_date
+        if to_date is None:
+            to_date = self.unique_to_date
+        if blocks is None:
+            blocks = self.unique_blocks
+
+        filtered_data = self._data[
+            (self._data[ProductionDataSchema.DATE] >= from_date)
+            & (self._data[ProductionDataSchema.DATE] <= to_date)
+            & (self._data[ProductionDataSchema.BLOCK].isin(blocks))
+        ]
+
+        return DataSource(filtered_data)
+    
+    # for generating amount of operators, numwells, oil prod mnth, gas prod mnth, depth
+    def generator_amount(
+        self,
+        all_unique_blocks: Optional[list[str]] = None,
+        type: Optional[str] = None,
+    ) -> float:
+        if all_unique_blocks is not None and type is not None:
+            
+            filter_gdf_blocks = self.gdf_blocks[self.gdf_blocks[allBLOCKS.BLOCK_NAME].isin(all_unique_blocks)]
+            filter_gdf_wells = self.gdf_wells[self.gdf_wells[allWELLS.BLOCK_WELL].isin(all_unique_blocks)]
+            
+            if type == "amount_operator":
+                list_operator = filter_gdf_blocks[allBLOCKS.OPERATOR_BLOCK].tolist()
+                unique_operator = sorted(set(list_operator))
+                return len(unique_operator)
+            
+            elif type == "num_wells":
+                num_total_well = filter_gdf_blocks[allBLOCKS.TOTAL_WELL].sum()
+                num_monitor_well = len(sorted(set(filter_gdf_wells[allWELLS.WELLBORE].tolist())))
+                return f"{num_total_well} / {num_monitor_well}"
+            
+            elif type == "avg_oil_prod_mth":
+                return 50000
+            
+            elif type == "avg_gas_prod_mth":
+                return 500000
+            
+            elif type == "avg_depth":
+                return 5200
+        
+        else:
+            return 0
+        
+    
 
     # 040823
     # main filter well-log
@@ -358,6 +416,28 @@ class DataSource:
     def geometry_(self) -> str:
         return self._geodata_blocks[allBLOCKS.GEOMETRY_BLOCK].tolist()
     
+    ## for overview analysis
+    # summary card
+    @property
+    def all_blocks(self)-> list[str]:
+        return self._data[ProductionDataSchema.BLOCK].tolist()
+    
+    @property    
+    def unique_blocks(self) -> list[str]:
+        return sorted(set(self.all_blocks))
+    
+    @property    
+    def amount_blocks(self) -> float:
+        return len(self.unique_blocks)
+    
+    # @property
+    # def amount_operators(self) -> float:
+    #     filter_operator = self.gdf_blocks[self.gdf_blocks[allBLOCKS.BLOCK_NAME].isin(self.unique_blocks)]
+    #     list_operator = filter_operator[allBLOCKS.OPERATOR_BLOCK].tolist()
+    #     unique_operator = sorted(set(list_operator))
+    #     return len(unique_operator)
+    
+    
     # for production performance
     # production filter
 
@@ -388,6 +468,7 @@ class DataSource:
     @property
     def unique_wells(self) -> list[str]:
         return sorted(set(self.all_wells))
+    
 
     # property for summary card
     @property

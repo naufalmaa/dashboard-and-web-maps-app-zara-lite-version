@@ -8,43 +8,47 @@ from .. import ids, cns
 
 
 def render(app: Dash, source: DataSource) -> html.Div:
-    # @app.callback(
-    #     Output(ids.TOTAL_OIL_PRODUCTION_AMOUNT_CARD, "children"),
-    #     Output(ids.TOTAL_GAS_PRODUCTION_AMOUNT_CARD, "children"),
-    #     Output(ids.TOTAL_WATER_INJECTION_AMOUNT_CARD, "children"),
-    #     Output(ids.ON_STREAM_TIME_AMOUNT_CARD, "children"),
-    #     [
-    #         Input(ids.FROM_DATE_DATEPICKER, "value"),
-    #         Input(ids.TO_DATE_DATEPICKER, "value"),
-    #         Input(ids.WELL_MAIN_MULTISELECT, "value"),
-    #     ],
-    #     prevent_initial_call=True,
-    # )
-    # def calculate_total() -> float:
-    #     generate_sum_oil = source.filter(
-    #         from_date=from_date, to_date=to_date, wells=wells
-    #     ).sum_oil
-    #     generate_sum_gas = source.filter(
-    #         from_date=from_date, to_date=to_date, wells=wells
-    #     ).sum_gas
-    #     generate_sum_wi = source.filter(
-    #         from_date=from_date, to_date=to_date, wells=wells
-    #     ).sum_wi
-    #     generate_sum_on_hours = source.filter(
-    #         from_date=from_date, to_date=to_date, wells=wells
-    #     ).sum_on_hours
-
-    #     abb_sum_oil = source.abbreviate_value(generate_sum_oil)
-    #     abb_sum_gas = source.abbreviate_value(generate_sum_gas)
-    #     abb_sum_wi = source.abbreviate_value(generate_sum_wi)
-    #     abb_sum_on_hours = source.abbreviate_value(generate_sum_on_hours)
-
-    #     return (
-    #         f"{abb_sum_oil}",
-    #         f"{abb_sum_gas}",
-    #         f"{abb_sum_wi}",
-    #         f"{abb_sum_on_hours}",
-    #     )
+    @app.callback(
+        Output(ids.TOTAL_OIL_BLOCKS_AMOUNT_CARD, "children"),
+        Output(ids.TOTAL_OPERATORS_AMOUNT_CARD, "children"),
+        Output(ids.TOTAL_NUM_OF_WELLS_AMOUNT_CARD, "children"),
+        Output(ids.AVG_OIL_PRODUCTION_MONTH_AMOUNT_CARD, "children"),
+        Output(ids.AVG_GAS_PRODUCTION_MONTH_AMOUNT_CARD, "children"),
+        Output(ids.AVG_DEPTH_AMOUNT_CARD, "children"),
+        [
+            Input(ids.FROM_DATE_DATEPICKER_OVERVIEW, "value"),
+            Input(ids.TO_DATE_DATEPICKER_OVERVIEW, "value"),
+            Input(ids.BLOCK_MULTISELECT_FILTER_OVERVIEW, "value"),
+        ],
+        prevent_initial_call=True,
+    )
+    def calculate_total(from_date: str, to_date: str, blocks: list[str]) -> float:
+        generate_name_oil_blocks = source.filter(from_date=from_date, to_date=to_date, blocks=blocks).unique_blocks
+        
+        generate_amount_oil_blocks = source.filter(from_date=from_date, to_date=to_date, blocks=blocks).amount_blocks
+        generate_amount_operators = source.generator_amount(generate_name_oil_blocks, "amount_operator")
+        generate_num_wells = source.generator_amount(generate_name_oil_blocks, "num_wells")
+        generate_avg_oil_prod_mth = source.generator_amount(generate_name_oil_blocks, "avg_oil_prod_mth")
+        generate_avg_gas_prod_mth = source.generator_amount(generate_name_oil_blocks, "avg_gas_prod_mth")
+        generate_avg_depth = source.generator_amount(generate_name_oil_blocks, "avg_depth")
+        
+        
+        abb_amount_blocks = source.abbreviate_value(generate_amount_oil_blocks)
+        abb_amount_operators = source.abbreviate_value(generate_amount_operators)
+        abb_num_wells = source.abbreviate_value(generate_num_wells)
+        abb_avg_oil_prod_mth = source.abbreviate_value(generate_avg_oil_prod_mth)
+        abb_avg_gas_prod_mth = source.abbreviate_value(generate_avg_gas_prod_mth)
+        abb_avg_depth = source.abbreviate_value(generate_avg_depth)
+        
+        
+        return (
+            f"{abb_amount_blocks}",
+            f"{abb_amount_operators}",
+            f"{abb_num_wells}",
+            f"{abb_avg_oil_prod_mth}",
+            f"{abb_avg_gas_prod_mth}",
+            f"{abb_avg_depth}"
+        )
 
     return html.Div(
         html.Div(
@@ -91,7 +95,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Text(
-                                                    "5",
+                                                    # "5",
                                                     id=ids.TOTAL_OIL_BLOCKS_AMOUNT_CARD,
                                                     className=cns.OVW_SC_TEXT,
                                                     align="center",
@@ -146,7 +150,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Text(
-                                                    "5",
+                                                    # "5",
                                                     id=ids.TOTAL_OPERATORS_AMOUNT_CARD,
                                                     className=cns.OVW_SC_TEXT,
                                                     align="center",
@@ -201,7 +205,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Text(
-                                                    "120 - 9",
+                                                    # "120 - 9",
                                                     id=ids.TOTAL_NUM_OF_WELLS_AMOUNT_CARD,
                                                     className=cns.OVW_SC_TEXT,
                                                     align="center",
@@ -256,7 +260,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Text(
-                                                    "22K",
+                                                    # "22K",
                                                     id=ids.AVG_OIL_PRODUCTION_MONTH_AMOUNT_CARD,
                                                     className=cns.OVW_SC_TEXT,
                                                     align="center",
@@ -311,7 +315,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Text(
-                                                    "300K",
+                                                    # "300K",
                                                     id=ids.AVG_GAS_PRODUCTION_MONTH_AMOUNT_CARD,
                                                     className=cns.OVW_SC_TEXT,
                                                     align="center",
@@ -354,7 +358,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                 dmc.Title(
                                                     f"Average Depth of Wells (TVD) (m)",
                                                     className=cns.OVW_SC_TITLE,
-                                                    # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
+                                                    # id=ids.AVG_DEPTH_AMOUNT_CARD,
                                                     weight="500",
                                                     order=5,
                                                     align="left",
@@ -366,7 +370,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Text(
-                                                    "5.2K",
+                                                    # "5.2K",
                                                     id=ids.AVG_DEPTH_AMOUNT_CARD,
                                                     className=cns.OVW_SC_TEXT,
                                                     align="center",

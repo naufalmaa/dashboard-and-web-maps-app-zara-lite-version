@@ -79,12 +79,12 @@ def load_all_blocks(path: str) -> gpd.GeoDataFrame:
 
 class allWELLS:
     WELLBORE = 'name'
+    BLOCK_WELL = 'block'
     ORIENTATION_WELL = 'orient'
     STATUS_WELL = 'status'
     PURPOSE_WELL = 'purpose'
     TYPE_WELL = 'type'
     GEOMETRY_WELL = 'geometry'
-    BLOCK_WELL = 'block'
     TOOLTIP = 'tooltip'
     POPUP = 'popup'
 
@@ -127,6 +127,7 @@ def load_all_wells(path: str) -> gpd.GeoDataFrame:
         path,
         dtype={
             allWELLS.WELLBORE: str,
+            allWELLS.BLOCK_WELL:str,
             allWELLS.ORIENTATION_WELL: str,
             allWELLS.STATUS_WELL: str,
             allWELLS.PURPOSE_WELL: str,
@@ -143,6 +144,7 @@ def load_all_wells(path: str) -> gpd.GeoDataFrame:
 
 class LogDataSchema:
     WELLBORE = "WELL_BORE_CODE"
+    BLOCK = "BLOCK"
     DEPTH = "DEPTH_MD"
     X     = "X_LOC"
     Y     = "Y_LOC"
@@ -163,6 +165,7 @@ def load_log_data(path: str) -> pd.DataFrame:
         path,
         dtype={
             LogDataSchema.WELLBORE: str,
+            LogDataSchema.BLOCK: str,
             LogDataSchema.DEPTH: float,
             LogDataSchema.X: float,
             LogDataSchema.Y: float,
@@ -185,6 +188,7 @@ class ProductionDataSchema:
     DATE                  = "DATEPRD"
     MONTH                 = "MONTHPRD"
     YEAR                  = "YEARPRD"
+    BLOCK                 = "BLOCK"
     WELLBORE              = "WELL_BORE_CODE"
     ON_STREAM_HRS         = "ON_STREAM_HRS"
     AVG_DOWNHOLE_PRESSURE = "AVG_DOWNHOLE_PRESSURE"
@@ -228,6 +232,7 @@ def load_well_production_data(path: str) -> pd.DataFrame:
         path,
         dtype={
             ProductionDataSchema.WELLBORE             : str,
+            ProductionDataSchema.BLOCK                : str,
             ProductionDataSchema.ON_STREAM_HRS        : float,
             ProductionDataSchema.AVG_DOWNHOLE_PRESSURE: float,
             ProductionDataSchema.AVG_DP_TUBING        : float,
