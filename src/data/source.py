@@ -133,6 +133,8 @@ class DataSource:
             
             filter_gdf_blocks = self.gdf_blocks[self.gdf_blocks[allBLOCKS.BLOCK_NAME].isin(all_unique_blocks)]
             filter_gdf_wells = self.gdf_wells[self.gdf_wells[allWELLS.BLOCK_WELL].isin(all_unique_blocks)]
+            filter_df_prod = self.df_production[self.df_production[ProductionDataSchema.BLOCK].isin(all_unique_blocks)]
+            filter_df_log = self.df_log[self.df_log[LogDataSchema.BLOCK].isin(all_unique_blocks)]
             
             if type == "amount_operator":
                 list_operator = filter_gdf_blocks[allBLOCKS.OPERATOR_BLOCK].tolist()
@@ -144,14 +146,21 @@ class DataSource:
                 num_monitor_well = len(sorted(set(filter_gdf_wells[allWELLS.WELLBORE].tolist())))
                 return f"{num_total_well} / {num_monitor_well}"
             
-            elif type == "avg_oil_prod_mth":
-                return 50000
+            elif type == "total_oil_prod_block":
+                total_oil_prod = filter_df_prod[ProductionDataSchema.BORE_OIL_VOL].sum()
+                return total_oil_prod
             
-            elif type == "avg_gas_prod_mth":
-                return 500000
+            elif type == "total_gas_prod_block":
+                total_gas_prod = filter_df_prod[ProductionDataSchema.BORE_GAS_VOL].sum()
+                return total_gas_prod
             
-            elif type == "avg_depth":
-                return 5200
+            elif type == "sum_depth":
+                total_depth = filter_df_log[LogDataSchema.Z].sum()
+                
+                if total_depth == 0:
+                    return total_depth
+                else:
+                    return -(total_depth)
         
         else:
             return 0
@@ -505,12 +514,12 @@ class DataSource:
 
     @property
     def columns_name_xyz_log(self) -> list[str]:
-        return self._data_log.iloc[:, :5].columns.tolist()
+        return self._data_log.iloc[:, :6].columns.tolist()
 
     @property
     def unique_params_log(self) -> list[str]:
-        return self._data_log.iloc[:, 5:12].columns.tolist()
+        return self._data_log.iloc[:, 6:13].columns.tolist()
 
     @property
     def columns_lith_log(self) -> list[str]:
-        return self._data_log.iloc[:, 12:].columns.tolist()
+        return self._data_log.iloc[:, 13:].columns.tolist()
