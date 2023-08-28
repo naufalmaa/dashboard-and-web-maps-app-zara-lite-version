@@ -11,6 +11,8 @@ from src.components.overview import (
     block_multiselect_filter,
     from_date_datepicker_filter,
     to_date_datepicker_filter,
+    average_production_month_graph,
+    
 )
 
 def create_layout(app: Dash, source: DataSource) -> html.Div:
@@ -59,6 +61,8 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                 className=cns.OVW_MAIN_CONTENT,
                 children=[
                     overview_summary_card.render(app, source),
+                    average_production_month_graph.render(app, source),
+                    
                 ],
             ),
         ]    

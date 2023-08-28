@@ -29,26 +29,26 @@ def render(app: Dash, source: DataSource) -> html.Div:
         
         generate_amount_operators = source.generator_amount(generate_name_oil_blocks, "amount_operator")
         generate_num_wells = source.generator_amount(generate_name_oil_blocks, "num_wells")
-        generate_total_oil_prod_block = source.generator_amount(generate_name_oil_blocks, "total_oil_prod_block")
-        generate_total_gas_prod_block = source.generator_amount(generate_name_oil_blocks, "total_gas_prod_block")
-        generate_avg_depth = source.generator_amount(generate_name_oil_blocks, "sum_depth")
+        generate_avg_oil_prod_block = source.generator_amount(generate_name_oil_blocks, "avg_oil_prod_block")
+        generate_avg_gas_prod_block = source.generator_amount(generate_name_oil_blocks, "avg_gas_prod_block")
+        generate_avg_depth = source.generator_amount(generate_name_oil_blocks, "avg_depth")
         
         
         abb_amount_blocks = source.abbreviate_value(generate_amount_oil_blocks)
         abb_amount_operators = source.abbreviate_value(generate_amount_operators)
         abb_num_wells = generate_num_wells
-        abb_total_oil_prod_block = source.abbreviate_value(generate_total_oil_prod_block)
-        abb_total_gas_prod_block = source.abbreviate_value(generate_total_gas_prod_block)
-        abb_avg_depth = source.abbreviate_value(generate_avg_depth)
+        abb_avg_oil_prod_block = source.abbreviate_value(generate_avg_oil_prod_block)
+        abb_avg_gas_prod_block = source.abbreviate_value(generate_avg_gas_prod_block)
+        abb_avg_depth = generate_avg_depth
         
         
         return (
             f"{abb_amount_blocks}",
             f"{abb_amount_operators}",
             f"{abb_num_wells}",
-            f"{abb_total_oil_prod_block}",
-            f"{abb_total_gas_prod_block}",
-            f"{abb_avg_depth}"
+            f"{abb_avg_oil_prod_block}",
+            f"{abb_avg_gas_prod_block}",
+            f"{abb_avg_depth:,.2f}"
         )
 
     return html.Div(
@@ -247,7 +247,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Title(
-                                                    f"Total Oil Production / Block (m\u00b3/Block)",
+                                                    f"Average Oil Production (m\u00b3)",
                                                     className=cns.OVW_SC_TITLE,
                                                     # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
                                                     weight="500",
@@ -302,7 +302,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Title(
-                                                    f"Total Gas Production / Blovk (m\u00b3/Block)",
+                                                    f"Average Gas Production (m\u00b3)",
                                                     className=cns.OVW_SC_TITLE,
                                                     # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
                                                     weight="500",
@@ -357,7 +357,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     },
                                                 ),
                                                 dmc.Title(
-                                                    f"Total Depth of Wells (TVD) (m)",
+                                                    f"Average Depth of Wells (TVD) (m)",
                                                     className=cns.OVW_SC_TITLE,
                                                     # id=ids.AVG_DEPTH_AMOUNT_CARD,
                                                     weight="500",

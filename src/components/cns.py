@@ -108,6 +108,9 @@ OVW_SC_ICON = 'overview-summary-card-icon'
 OVW_SC_TITLE = 'overview-summary-card-title'
 OVW_SC_TEXT = 'overview-summary-card-text'
 
+# on average_production_month_graph.py
+OVW_AVG_PRODUCTION_MONTH_GRAPH = 'ovw-avg-production-month-graph'
+
 ########################################################################
 ########################################################################
 # on production_performance components

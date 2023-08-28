@@ -44,6 +44,9 @@ AVG_OIL_PRODUCTION_MONTH_AMOUNT_CARD = 'avg-oil-production-amount-card'
 AVG_GAS_PRODUCTION_MONTH_AMOUNT_CARD = 'avg-gas-production-amount-card'
 AVG_DEPTH_AMOUNT_CARD = 'avg-depth-amount-card'
 
+# average production month graph
+AVG_PRODUCTION_MONTH_GRAPH = 'avg-production-month-graph'
+
 # ----------------------------------------------------------------
 
 # Production

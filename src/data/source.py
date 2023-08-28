@@ -9,7 +9,12 @@ import pandas as pd
 import geopandas as gpd
 import numpy as np
 
-from .loader import ProductionDataSchema, allBLOCKS, allWELLS, LogDataSchema
+from .loader import (
+    allBLOCKS, 
+    allWELLS, 
+    ProductionDataSchema,
+    LogDataSchema
+)
 
 
 @dataclass
@@ -146,16 +151,16 @@ class DataSource:
                 num_monitor_well = len(sorted(set(filter_gdf_wells[allWELLS.WELLBORE].tolist())))
                 return f"{num_total_well} / {num_monitor_well}"
             
-            elif type == "total_oil_prod_block":
-                total_oil_prod = filter_df_prod[ProductionDataSchema.BORE_OIL_VOL].sum()
+            elif type == "avg_oil_prod_block":
+                total_oil_prod = filter_df_prod[ProductionDataSchema.BORE_OIL_VOL].mean()
                 return total_oil_prod
             
-            elif type == "total_gas_prod_block":
-                total_gas_prod = filter_df_prod[ProductionDataSchema.BORE_GAS_VOL].sum()
+            elif type == "avg_gas_prod_block":
+                total_gas_prod = filter_df_prod[ProductionDataSchema.BORE_GAS_VOL].mean()
                 return total_gas_prod
             
-            elif type == "sum_depth":
-                total_depth = filter_df_log[LogDataSchema.Z].sum()
+            elif type == "avg_depth":
+                total_depth = filter_df_log[LogDataSchema.Z].mean()
                 
                 if total_depth == 0:
                     return total_depth
@@ -165,7 +170,32 @@ class DataSource:
         else:
             return 0
         
-    
+    # create table for average_production_month_graph.py
+    def create_table_avg_prod_mth(
+        self,
+        df: pd.DataFrame = None      
+    ) -> pd.DataFrame:
+        
+        df[ProductionDataSchema.DATE] = pd.to_datetime(df[ProductionDataSchema.DATE])
+        
+        # Extract year and month from the 'Date' column
+        df['Year'] = df[ProductionDataSchema.DATE].dt.year
+        df['Month'] = df[ProductionDataSchema.DATE].dt.month
+        
+        df['Year_Month'] = df['Year'].astype(str) + '-' + df['Month'].astype(str).str.zfill(2)
+
+        # Group the data by year and month, then calculate the average oil production for each month
+        average_oil_gas_per_month = df.groupby(['Year_Month'])[[ProductionDataSchema.BORE_OIL_VOL, ProductionDataSchema.BORE_GAS_VOL]].mean()
+
+        # Convert cubic meters to barrels (1 m^3 = 6.28981 barrels)
+        average_oil_gas_per_month["BORE_OIL_VOL_barrels"] = average_oil_gas_per_month[ProductionDataSchema.BORE_OIL_VOL] * 6.28981
+
+        # Convert cubic meters to MCF (1 m^3 = 35.3147 cubic feet, 1 MCF = 35.3147 * 1000 cubic feet)
+        average_oil_gas_per_month["BORE_GAS_VOL_MCF"] = average_oil_gas_per_month[ProductionDataSchema.BORE_GAS_VOL] * (35.3147 * 1000)
+        # Reset the index for the new DataFrame
+        average_oil_gas_per_month = average_oil_gas_per_month.reset_index()
+        
+        return average_oil_gas_per_month
 
     # 040823
     # main filter well-log
