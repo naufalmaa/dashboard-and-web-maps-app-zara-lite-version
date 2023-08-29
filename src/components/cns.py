@@ -111,6 +111,9 @@ OVW_SC_TEXT = 'overview-summary-card-text'
 # on average_production_month_graph.py
 OVW_AVG_PRODUCTION_MONTH_GRAPH = 'ovw-avg-production-month-graph'
 
+# on operator_well_counts_pie_chart.py
+OVW_OPERATOR_WELL_COUNTS_PIE_CHART = 'ovw-operator-well-counts-pie-chart'
+
 ########################################################################
 ########################################################################
 # on production_performance components

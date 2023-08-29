@@ -73,8 +73,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
                                                     icon="material-symbols:factory",
                                                     color="#012226",
-                                                    height=40,
-                                                    width=40,
+                                                    height=30,
+                                                    width=30,
                                                     style={
                                                         "marginTop": 5,
                                                         "marginRight": 10,
@@ -92,7 +92,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # color='red',
                                                     style={
                                                         "marginLeft": 10,
-                                                        "fontSize": 20,
+                                                        "fontSize": 18,
                                                     },
                                                 ),
                                                 dmc.Text(
@@ -128,8 +128,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
                                                     icon="mdi:worker",
                                                     color="#012226",
-                                                    height=40,
-                                                    width=40,
+                                                    height=30,
+                                                    width=30,
                                                     style={
                                                         "marginTop": 5,
                                                         "marginRight": 10,
@@ -147,7 +147,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # color='red',
                                                     style={
                                                         "marginLeft": 10,
-                                                        "fontSize": 20,
+                                                        "fontSize": 17,
                                                     },
                                                 ),
                                                 dmc.Text(
@@ -183,8 +183,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
                                                     icon="fa6-solid:oil-well",
                                                     color="#012226",
-                                                    height=40,
-                                                    width=40,
+                                                    height=30,
+                                                    width=30,
                                                     style={
                                                         "marginTop": 5,
                                                         "marginRight": 10,
@@ -202,7 +202,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # color='red',
                                                     style={
                                                         "marginLeft": 10,
-                                                        "fontSize": 20,
+                                                        "fontSize": 13,
                                                     },
                                                 ),
                                                 dmc.Text(
@@ -238,8 +238,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
                                                     icon="material-symbols:oil-barrel",
                                                     color="#012226",
-                                                    height=40,
-                                                    width=40,
+                                                    height=30,
+                                                    width=30,
                                                     style={
                                                         "marginTop": 5,
                                                         "marginRight": 10,
@@ -257,7 +257,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # color='red',
                                                     style={
                                                         "marginLeft": 10,
-                                                        "fontSize": 20,
+                                                        "fontSize": 15,
                                                     },
                                                 ),
                                                 dmc.Text(
@@ -293,8 +293,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
                                                     icon="ic:sharp-gas-meter",
                                                     color="#012226",
-                                                    height=40,
-                                                    width=40,
+                                                    height=30,
+                                                    width=30,
                                                     style={
                                                         "marginTop": 5,
                                                         "marginRight": 10,
@@ -312,7 +312,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # color='red',
                                                     style={
                                                         "marginLeft": 10,
-                                                        "fontSize": 20,
+                                                        "fontSize": 15,
                                                     },
                                                 ),
                                                 dmc.Text(
@@ -348,8 +348,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # id=ids.ICON_TITLE_SUMMARY_TOGETHER,
                                                     icon="iconoir:depth",
                                                     color="#012226",
-                                                    height=40,
-                                                    width=40,
+                                                    height=30,
+                                                    width=30,
                                                     style={
                                                         "marginTop": 5,
                                                         "marginRight": 10,
@@ -367,7 +367,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                     # color='red',
                                                     style={
                                                         "marginLeft": 10,
-                                                        "fontSize": 20,
+                                                        "fontSize": 15,
                                                     },
                                                 ),
                                                 dmc.Text(

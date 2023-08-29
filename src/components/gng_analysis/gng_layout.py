@@ -67,7 +67,8 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                                     ),
                                     dmc.AccordionPanel(
                                         html.Div(
-                                            children=wells_3d_filter.render(app, source) + lithology_distribution_3d_filter.render(app, source)
+                                            children=wells_3d_filter.render(app, source) 
+                                                    + lithology_distribution_3d_filter.render(app, source)
                                         )
                                     ),
                                 ],

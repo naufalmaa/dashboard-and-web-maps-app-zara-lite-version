@@ -9,9 +9,10 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 
-from ...data.loader import ProductionDataSchema
+from ...data.loader import ProductionDataSchema, allBLOCKS, allWELLS
 from ...data.source import DataSource
 from .. import ids, cns
+
 
 def render(app: Dash, source: DataSource) -> html.Div:
     @app.callback(
@@ -51,30 +52,51 @@ def render(app: Dash, source: DataSource) -> html.Div:
                     # borderwidth=1       # Border width of the legend
                 ),
             )
-            
+
             return html.Div(
                 dcc.Graph(figure=empty_fig),
                 id=ids.AVG_PRODUCTION_MONTH_GRAPH,
                 className=cns.OVW_AVG_PRODUCTION_MONTH_GRAPH,
             )
 
+        # for productions
         filtered_source_production = source.filter_overview(
             from_date=from_date, to_date=to_date, blocks=blocks
         ).df_production
-        
-        filtered_oil_gas_df = source.create_table_avg_prod_mth(df=filtered_source_production)
-        
-        fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-        # Add traces for BORE_OIL_VOL in barrels
+        filtered_df = source.create_table_avg_prod_mth(
+            df=filtered_source_production
+        )
+        
+        fig = make_subplots(
+            specs=[
+                [{"secondary_y": True}]
+            ],
+        )
+
+        # Add traces for BORE_OIL_VOL in barrels on row 1 col 1
         fig.add_trace(
-            go.Scatter(x=filtered_oil_gas_df["Year_Month"], y=filtered_oil_gas_df["BORE_OIL_VOL_barrels"], name="Average Oil Volume per Month (in Barrels Oil)"),
+            go.Scatter(
+                name="Average Oil Volume per Month (in Barrels Oil)",
+                x=filtered_df["Year_Month"],
+                y=filtered_df["BORE_OIL_VOL_barrels"],
+                mode="lines",
+                line={},
+                showlegend=True,
+            ),
             secondary_y=False,
         )
 
-        # Add traces for BORE_GAS_VOL in MCF
+        # Add traces for BORE_GAS_VOL in MCF on row 1 col 1
         fig.add_trace(
-            go.Scatter(x=filtered_oil_gas_df["Year_Month"], y=filtered_oil_gas_df["BORE_GAS_VOL_MCF"], name="Average Gas Volume per Month (in MCF)"),
+            go.Scatter(
+                x=filtered_df["Year_Month"],
+                y=filtered_df["BORE_GAS_VOL_MCF"],
+                name="Average Gas Volume per Month (in MCF)",
+                mode="lines",
+                line={},
+                showlegend=True,
+            ),
             secondary_y=True,
         )
 
@@ -105,11 +127,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
         )
 
         # Update y-axis labels
-        fig.update_yaxes(title_text="Oil Volume (in Barrels Oil)", secondary_y=False)
-        fig.update_yaxes(title_text="Gas Volume (in MCF)", secondary_y=True)
-
-        fig.update_yaxes(range=[0, 30000], secondary_y=False)  # Set range for barrels
-        fig.update_yaxes(range=[0, 30e9], secondary_y=True)  # Set range for MCF
+        fig.update_yaxes(title_text="Oil Volume (in Barrels Oil)", secondary_y=False, range=[0, 30000])
+        fig.update_yaxes(title_text="Gas Volume (in MCF)",secondary_y=True, range=[0, 30e9])
 
         return html.Div(
             dcc.Graph(figure=fig),
@@ -117,4 +136,6 @@ def render(app: Dash, source: DataSource) -> html.Div:
             className=cns.OVW_AVG_PRODUCTION_MONTH_GRAPH,
         )
 
-    return html.Div(id=ids.AVG_PRODUCTION_MONTH_GRAPH, className=cns.OVW_AVG_PRODUCTION_MONTH_GRAPH)
+    return html.Div(
+        id=ids.AVG_PRODUCTION_MONTH_GRAPH, className=cns.OVW_AVG_PRODUCTION_MONTH_GRAPH
+    )

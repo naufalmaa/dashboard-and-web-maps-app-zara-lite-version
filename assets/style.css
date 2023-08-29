@@ -81,6 +81,50 @@ body {
     padding: 10px;
 }
 
+/* OVERALL Overview Dashboard */
+.overview-container{
+    padding: 10px;
+}
+.overview-wrapper{
+    padding: 10px;
+}
+
+/* Left-side */
+.overview-accordion-filter{
+    margin: 20px 80px 80px ;
+}
+.overview-filter{
+    padding: 10px;
+    /* margin-right: 20px 80px 80px; */
+}
+.overview-to-date-picker-wrapper{
+    margin-left: 20px;
+}
+
+#from-datepicker-layout-overview, #to-datepicker-layout-overview{
+    display: inline-table;
+}
+
+/* Right-side */
+/* on summary card */
+
+
+.overview-summary-card-group{
+    display: inline-block;
+}
+
+.overview-summary-card-card {
+    height: 100%;
+    width: 100%;
+}
+
+/* .overview-summary-card-text {
+    
+} */
+
+
+
+
 /* Overall Production Performance Dashboard */
 .ppd-container{
     padding: 10px;
@@ -89,6 +133,7 @@ body {
 .ppd-wrapper{
     padding: 10px;
 }
+
 
 /* Production filter left grid-side */
 .ppd-production-filter{
@@ -293,6 +338,24 @@ body {
     .web-container .main-tabs .main-tablist {
         grid-column: 1/13;
     }
+
+    /* overview dashboards */
+    .web-container .overview-wrapper{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+    }
+
+    /* left grid-side of production performance dashboard */
+    .web-container .overview-wrapper .overview-filter{
+        grid-column: 1/5;
+    }
+
+    /* right grid-side of production performance dashboard*/
+    .web-container .overview-wrapper .overview-main-content{
+        grid-column: 5/13;
+    }
+
 
     /* production performance dashboard */
     /* .web-container .main-tabs .main-tablist .ppd-container{

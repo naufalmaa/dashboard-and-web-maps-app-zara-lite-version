@@ -34,6 +34,8 @@ ALL_DATES_AFTER_CHECKBOX_OVERVIEW = 'all-dates-after-checkbox-overview'
 BLOCK_MULTISELECT_FILTER_OVERVIEW = 'block-multiselect-filter-overview'
 SELECT_ALL_BLOCK_BUTTON_OVERVIEW = 'select-all-block-button-overview'
 
+FROM_DATEPICKER_LAYOUT_OVERVIEW = 'from-datepicker-layout-overview'
+TO_DATEPICKER_LAYOUT_OVERVIEW = 'to-datepicker-layout-overview'
 
 
 # Summary Card
@@ -46,6 +48,9 @@ AVG_DEPTH_AMOUNT_CARD = 'avg-depth-amount-card'
 
 # average production month graph
 AVG_PRODUCTION_MONTH_GRAPH = 'avg-production-month-graph'
+
+# double pie chart for operators and wells
+OPERATOR_WELL_COUNTS_PIE_CHART = 'operator-well-counts-pie-chart'
 
 # ----------------------------------------------------------------
 
