@@ -13,7 +13,7 @@ from src.components.overview import (
     to_date_datepicker_filter,
     average_production_month_graph,
     operator_well_counts_pie_chart,
-    
+    top_ranks_production_subplots
 )
 
 def create_layout(app: Dash, source: DataSource) -> html.Div:
@@ -64,6 +64,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                     overview_summary_card.render(app, source),
                     average_production_month_graph.render(app, source),
                     operator_well_counts_pie_chart.render(app, source),
+                    top_ranks_production_subplots.render(app, source),
                     
                 ],
             ),

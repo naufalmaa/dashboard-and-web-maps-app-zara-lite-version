@@ -52,6 +52,12 @@ AVG_PRODUCTION_MONTH_GRAPH = 'avg-production-month-graph'
 # double pie chart for operators and wells
 OPERATOR_WELL_COUNTS_PIE_CHART = 'operator-well-counts-pie-chart'
 
+# top ranks for production bar chart
+TOP_RANKS_DROPDOWN = 'top-ranks-dropdown'
+TOP_RANKS_OIL_GAS_SUBPLOTS = 'top-ranks-oil-gas-subplots'
+
+
+
 # ----------------------------------------------------------------
 
 # Production

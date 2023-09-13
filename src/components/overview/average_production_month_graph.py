@@ -64,8 +64,9 @@ def render(app: Dash, source: DataSource) -> html.Div:
             from_date=from_date, to_date=to_date, blocks=blocks
         ).df_production
 
-        filtered_df = source.create_table_avg_prod_mth(
-            df=filtered_source_production
+        filtered_df = source.create_table_prod_mth(
+            df=filtered_source_production,
+            type="avg"
         )
         
         fig = make_subplots(

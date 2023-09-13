@@ -38,6 +38,15 @@ body {
     padding: 10px;
 }
 
+.data-cell-left{
+    color: #151515;
+}
+
+.data-cell-right{
+    background-color: #ebf2f7;
+    padding-left: 10px;
+}
+
 /* LEFT GRID-SIDE MAP (FILTER MAP) */
 
 .left-side-map {

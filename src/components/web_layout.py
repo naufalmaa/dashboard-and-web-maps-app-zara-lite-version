@@ -72,7 +72,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                             dmc.Tab("Overview", value="1"),
                             dmc.Tab("Production Performance Analysis", value="2"),
                             dmc.Tab("Geology & Geophysics Analysis", value="3"),
-                            dmc.Tab("Cost Analysis", value="4"),
+                            # dmc.Tab("Cost Analysis", value="4"),
                         ],
                         className=cns.MAIN_TABLIST,
                     ),
@@ -86,7 +86,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                     dmc.TabsPanel(gng_layout.create_layout(app, source), value="3", className=cns.GNG_CONTAINER),
                     
                     # tabs for cost analysis
-                    dmc.TabsPanel("This is for cost analysis layout. (in progress)", value="4", className=cns.CAD_CONTAINER),
+                    # dmc.TabsPanel("This is for cost analysis layout. (in progress)", value="4", className=cns.CAD_CONTAINER),
                 ],
                 value="1",
                 variant="outline",

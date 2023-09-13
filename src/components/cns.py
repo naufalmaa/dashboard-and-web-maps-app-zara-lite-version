@@ -114,6 +114,9 @@ OVW_AVG_PRODUCTION_MONTH_GRAPH = 'ovw-avg-production-month-graph'
 # on operator_well_counts_pie_chart.py
 OVW_OPERATOR_WELL_COUNTS_PIE_CHART = 'ovw-operator-well-counts-pie-chart'
 
+# on top_ranks_production_bar_chart.py
+OVW_TOP_RANKS_DROPDOWN = 'ovw-top-ranks-dropdown'
+OVW_TOP_RANKS_OIL_GAS_SUBPLOTS = 'ovw-top-ranks-oil-gas-subplots'
 ########################################################################
 ########################################################################
 # on production_performance components
