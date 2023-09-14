@@ -1,10 +1,19 @@
 # dash-dashboard-and-web-maps-app-temp
 
 This prototype of oil and gas dashboard mainly uses Python and Dash. I understand this code still has so many bugs and needs an improvement, so it will be updated regularly.
+
 The step-by-step of compiling this code:
-1. run code "pip install -r requirements.txt" on your virtual environment
-2. run python file on "main.py"
-3. open the website running by Dash on http://127.0.0.1:8000/
+1. Clone the repository
+```
+git clone https://github.com/yourusername/chatgpt-dash-component.git
+```
+
+2. Install required Python packages
+```
+pip install -r requirements.txt
+```
+
+3. Run Pythong file on "main.py".
 
 this is the screenshots of the dashboard
 
