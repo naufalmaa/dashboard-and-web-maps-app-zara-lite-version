@@ -56,7 +56,9 @@ OPERATOR_WELL_COUNTS_PIE_CHART = 'operator-well-counts-pie-chart'
 TOP_RANKS_DROPDOWN = 'top-ranks-dropdown'
 TOP_RANKS_OIL_GAS_SUBPLOTS = 'top-ranks-oil-gas-subplots'
 
-
+# data preview table
+SELECT_DATA_SEGCONTROL = 'select-data-segment-control'
+PREVIEW_DATA_TABLE = 'preview-data-table'
 
 # ----------------------------------------------------------------
 

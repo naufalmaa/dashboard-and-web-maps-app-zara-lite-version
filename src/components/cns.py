@@ -117,6 +117,13 @@ OVW_OPERATOR_WELL_COUNTS_PIE_CHART = 'ovw-operator-well-counts-pie-chart'
 # on top_ranks_production_bar_chart.py
 OVW_TOP_RANKS_DROPDOWN = 'ovw-top-ranks-dropdown'
 OVW_TOP_RANKS_OIL_GAS_SUBPLOTS = 'ovw-top-ranks-oil-gas-subplots'
+
+# on preview_data_table.py
+
+OVW_PREVIEW_DATA_CONTAINER = 'ovw-preview-data-container'
+OVW_SELECT_DATA_SEGCONTROL = 'ovw-select-data-segment-control'
+OVW_PREVIEW_DATA_TABLE = 'ag-theme-alpine'
+
 ########################################################################
 ########################################################################
 # on production_performance components
