@@ -1,4 +1,4 @@
-# dash-dashboard-and-web-maps-app-temp
+# dashboard-and-web-maps-app-zara
 
 This prototype of oil and gas dashboard mainly uses Python and Dash. I understand this code still has so many bugs and needs an improvement, so it will be updated regularly.
 
