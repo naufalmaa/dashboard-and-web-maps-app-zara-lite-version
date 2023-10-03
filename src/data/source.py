@@ -211,7 +211,8 @@ class DataSource:
             df['Year_Month'] = df['Year'].astype(str) + '-' + df['Month'].astype(str).str.zfill(2)
 
             # Group the data by year and month, then calculate the average oil production for each month
-            sum_oil_gas_per_month = df.groupby(['Year_Month','WELL_BORE_CODE'])[ProductionDataSchema.BORE_OIL_VOL, ProductionDataSchema.BORE_GAS_VOL].sum()
+            sum_oil_gas_per_month = df.groupby(['Year_Month','WELL_BORE_CODE'])[[ProductionDataSchema.BORE_OIL_VOL, ProductionDataSchema.BORE_GAS_VOL]].sum()
+            # sum_oil_gas_per_month = df.groupby(['Year_Month', 'WELL_BORE_CODE'])[['BORE_OIL_VOL', 'BORE_GAS_VOL']].sum()
 
             # Convert cubic meters to barrels (1 m^3 = 6.28981 barrels)
             sum_oil_gas_per_month["BORE_OIL_VOL_barrels"] = sum_oil_gas_per_month[ProductionDataSchema.BORE_OIL_VOL] * 6.28981

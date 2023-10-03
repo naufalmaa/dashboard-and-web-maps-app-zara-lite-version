@@ -6,6 +6,10 @@ from src.components import ids, cns
 
 from ..data.source import DataSource
 
+from .header import (
+    navbar
+)
+
 from .web_maps import (
     wmaps_layout
     # filter_maps,
@@ -54,7 +58,13 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
         className=cns.WEB_CONTAINER,
         children=[
             # div navbar (header(1))
-            html.Div(className=cns.NAVBAR, children=[html.H1("Navigation Bar")]),
+            html.Div(
+                className=cns.NAVBAR, 
+                children=[
+                    # html.H1("Navigation Bar")
+                    navbar.create_layout(app, source)
+                ]
+            ),
             
             # div for webmaps
             html.Div(
