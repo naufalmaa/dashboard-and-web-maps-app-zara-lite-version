@@ -80,7 +80,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         attribution='&copy; <a href="http://www.waviv.com/">Waviv Technologies</a> ',
                     ),
                     dl.GestureHandling(),
-                    dl.FullScreenControl(),
+                    # dl.FullScreenControl(),
                     dl.MeasureControl(
                         position="topleft",
                         primaryLengthUnit="kilometers",
@@ -138,7 +138,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         attribution='&copy; <a href="http://www.waviv.com/">Waviv Technologies</a> ',
                     ),
                     dl.GestureHandling(),
-                    dl.FullScreenControl(),
+                    # dl.FullScreenControl(),
                     dl.MeasureControl(
                         position="topleft",
                         primaryLengthUnit="kilometers",
@@ -183,7 +183,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                     attribution='&copy; <a href="http://www.waviv.com/">Waviv Technologies</a> ',
                 ),
                 dl.GestureHandling(),
-                dl.FullScreenControl(),
+                # dl.FullScreenControl(),
                 dl.MeasureControl(
                     position="topleft",
                     primaryLengthUnit="kilometers",
