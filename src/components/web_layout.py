@@ -7,7 +7,11 @@ from src.components import ids, cns
 from ..data.source import DataSource
 
 from .header import (
-    navbar
+    headerbar
+)
+
+from .footer import (
+    footerbar
 )
 
 from .web_maps import (
@@ -62,7 +66,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                 className=cns.NAVBAR, 
                 children=[
                     # html.H1("Navigation Bar")
-                    navbar.create_layout(app, source)
+                    headerbar.create_layout(app, source)
                 ]
             ),
             
@@ -108,7 +112,8 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
             html.Div(
                 className=cns.FOOTER_WEB,
                 children=[
-                    html.H1("Footer"),
+                    # html.H1("Footer"),
+                    footerbar.create_layout(app, source)
                 ],
             ),
         ],
