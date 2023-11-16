@@ -31,7 +31,7 @@ def create_layout_map(app: Dash, source: DataSource) -> html.Div:
                     html.Div(
                         className=cns.TITLE_SUMMARY_LAYOUT,
                         children=[
-                            html.H1("Dashboard Aceh (Dummy)", className=cns.TITLE_BLOCK),
+                            html.H1("Project Aceh", className=cns.TITLE_BLOCK),
                             html.H4("Summary"),
                             dmc.Spoiler(
                                 className=cns.SUMMARY_BLOCK,
@@ -42,7 +42,7 @@ def create_layout_map(app: Dash, source: DataSource) -> html.Div:
                                 children=[
                                     dmc.Text(
                                         """
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus elit at eros accumsan iaculis. Nulla facilisi. Morbi vitae venenatis ante. Nulla dui tellus, euismod at malesuada ac, luctus quis orci. Nullam in eros mollis, vulputate neque ut, vulputate dolor. In sed ultrices mauris. Ut vitae dolor augue. Ut ac purus eu felis scelerisque facilisis. Donec consectetur odio orci, non volutpat eros suscipit vestibulum. Quisque a fermentum massa. Sed ac nibh nibh.
+                                        Project Aceh is a strategic offshore venture in the oil and gas sector, set in the rich resource region off the coast of Aceh, Indonesia. This ambitious initiative aims to tap into the vast untapped reserves beneath the seabed. Leveraging cutting-edge exploration techniques and advanced drilling technologies, it seeks to unlock significant hydrocarbon resources to bolster the energy sector, attract investment, and promote economic growth. This project not only promises to be a game-changer in the energy industry but also holds the potential to create job opportunities and enhance the energy security of the region.
                                         """
                                     )
                                 ],

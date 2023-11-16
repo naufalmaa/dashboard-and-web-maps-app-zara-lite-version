@@ -1,4 +1,5 @@
-from dash import Dash, html
+from dash import Dash, html, Input, Output
+import dash.exceptions
 
 from src.components.web_layout import create_layout
 from src.data.loader import load_well_production_data, load_all_blocks, load_all_wells, load_log_data
@@ -24,9 +25,12 @@ def main() -> None:
     app = Dash(__name__, prevent_initial_callbacks='initial_duplicate', suppress_callback_exceptions=True, meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1.0"}
     ])
-    app.title = "Dashboard Aceh (Dummy)"
+    
+    app.title = "Project Aceh"
     app.layout = create_layout(app, data)
-    app.run_server(debug=True, port = 8000)
+    app.run_server(debug=True, port = 7500)
+    
+
 
 if __name__ == '__main__':
     main()
