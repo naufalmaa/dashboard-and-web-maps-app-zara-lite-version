@@ -226,3 +226,35 @@ GNG_WELLS_3D_FILTER = "gng-wells-3d-filter"
 
 # on wells_3d_graph.py
 GNG_WELLS_3D_GRAPH = "gng-wells-3d-graph"
+
+
+
+########################################################################
+########################################################################
+
+# Zara Chatbot
+# BUTTON
+ZARA_FLOAT_BUTTON = 'zara-float-button'
+
+#Card chat
+ZARA_CARD_SECTION = 'zara-card-section'
+ZARA_CARD_INTRO = 'zara-card-intro'
+ZARA_CARD_TABLE = 'zara-card-table'
+
+#Tab data
+ZARA_TAB_SECTION = 'zara-tab-section'
+
+#response
+ZARA_RESPONSE_SECTION = 'zara-response-section'
+
+#Profile Grid
+ZARA_PROFILE_GRID = 'zara-profile-grid'
+
+#Chat Input
+ZARA_DIV_CHAT = 'zara-div-chat'
+ZARA_CHAT_INPUT = 'zara-chat-input'
+ZARA_CHAT_AREA = 'zara-chat-area'
+
+#Submit button
+ZARA_SUBMIT_BUTTON = 'zara-submit-button'
+
