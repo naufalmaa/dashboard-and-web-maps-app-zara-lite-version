@@ -108,7 +108,7 @@ body {
     /* margin-right: 20px 80px 80px; */
 }
 .overview-to-date-picker-wrapper{
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 #from-datepicker-layout-overview, #to-datepicker-layout-overview{
@@ -200,7 +200,7 @@ body {
 }
 
 .ppd-to-date-picker-wrapper{
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 .ppd-sc-group-left-grid{
@@ -340,11 +340,7 @@ body {
     margin-top: 10px;
     overflow-x: scroll;
     /* Hide the scrollbar */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-        width: 0px; 
-    }
+    scrollbar-width: 1px;
 }
 
 #zara-segmented-prev .mantine-SegmentedControl-label{

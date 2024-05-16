@@ -23,3 +23,7 @@
 'User: summerize the andaman III block6cde01f28edc46cab1ad11fb94821c973627126aeff3ca7b224215344ffdd6bc', (30720, 1162)
 "User: what's the latest date based on data6cde01f28edc46cab1ad11fb94821c973627126aeff3ca7b224215344ffdd6bc", (32256, 993)
 'User: Predict bore oil volume for 2017-01-01 on Well-W16cde01f28edc46cab1ad11fb94821c973627126aeff3ca7b224215344ffdd6bc', (33280, 1348)
+'User: Predict bore oil volume for january of 2017 on Well-W16cde01f28edc46cab1ad11fb94821c973627126aeff3ca7b224215344ffdd6bc', (34816, 1238)
+'User: please create a summary of this data6cde01f28edc46cab1ad11fb94821c973627126aeff3ca7b224215344ffdd6bc', (36352, 891)
+'User: please tell me which block that has the highest downhole pressure6cde01f28edc46cab1ad11fb94821c973627126aeff3ca7b224215344ffdd6bc', (37376, 1156)
+'User: tell me the highest gas oil ratiodd27c978c76958f46a8ae123732f335c16ed551be6293c348d56e7c8dce7c480', (38912, 907)

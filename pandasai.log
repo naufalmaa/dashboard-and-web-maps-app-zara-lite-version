@@ -2509,3 +2509,134 @@ result = analyze_data(dfs)
 2023-11-21 13:16:51 [INFO] Answer: {'type': 'text', 'value': 'The predicted bore oil volume for January 2017 on Well-W1 is nan.'}
 2023-11-21 13:16:51 [INFO] Executed in: 8.83991003036499s
 2023-11-21 13:16:51 [INFO] 127.0.0.1 - - [21/Nov/2023 13:16:51] "POST /_dash-update-component HTTP/1.1" 200 -
+2024-05-16 18:27:12 [INFO] Question: please create a summary of this data
+2024-05-16 18:27:12 [INFO] Running PandasAI with openai LLM...
+2024-05-16 18:27:12 [INFO] Prompt ID: 2f02fbb6-4ff4-442c-98a0-1b60ee8ace29
+2024-05-16 18:27:17 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here
+    summary = dfs[0].describe().T
+    return {"type": "dataframe", "value": summary}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2024-05-16 18:27:17 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    summary = dfs[0].describe().T
+    return {'type': 'dataframe', 'value': summary}
+
+
+result = analyze_data(dfs)
+        ```
+2024-05-16 18:27:17 [INFO] Answer: {'type': 'dataframe', 'value':                          count           mean            std         min           25%           50%            75%            max
+ON_STREAM_HRS          15349.0      19.994093       8.369978    0.000000     24.000000     24.000000      24.000000      25.000000
+AVG_DOWNHOLE_PRESSURE   8980.0     181.803869     109.712363    0.000000      0.000000    232.896939     255.401455     397.588550
+AVG_DP_TUBING           8980.0     154.028787      76.752373    0.000000     83.665361    175.588861     204.319964     345.906770
+AVG_WHP_P               9155.0      45.377811      24.752631    0.000000     31.148062     37.933620      57.101268     137.311030
+AVG_WHT_P               9146.0      67.728440      27.719028    0.000000     56.577834     80.071250      88.062202      93.509584
+DP_CHOKE_SIZE          15340.0      11.441060      19.816928    0.000000      0.000000      2.384969      13.765020     125.718570
+BORE_OIL_VOL            9161.0    1095.631548    1323.538151    0.000000    190.690000    557.550000    1345.200000    5901.840000
+BORE_GAS_VOL            9161.0  161049.059703  188136.410434    0.000000  29430.590000  87749.660000  202482.300000  851131.520000
+BORE_WAT_VOL            9161.0    1672.151332    1706.982853 -457.840000     19.870000   1097.790000    3260.950000    8019.740000
+BORE_WI_VOL             5706.0    5315.480815    2181.486695    0.000000   4338.204674   5504.739769    6781.058040   10013.600000
+MOVING_AVERAGE          5287.0    5364.712552    1703.490144    0.000000   4432.861892   5267.284627    6453.815093    9148.793872
+MOVING_AVERAGE_OIL      9122.0    1099.791728    1263.967711    0.000000    206.058929    586.795714    1400.517679    5576.209286
+MOVING_AVERAGE_WI       5287.0    5364.712552    1703.490144    0.000000   4432.861892   5267.284627    6453.815093    9148.793872
+WATER_CUT_DAILY         8011.0       2.685615       3.892497   -3.722733      0.128310      1.144023       3.439927      57.797619
+GAS_OIL_RATIO           8008.0     151.960542      16.449967   18.536118    145.826418    151.429372     156.810801    1110.185309}
+2024-05-16 18:27:17 [INFO] Executed in: 5.099085807800293s
+2024-05-16 18:27:42 [INFO] Question: please tell me which block that has the highest downhole pressure
+2024-05-16 18:27:42 [INFO] Running PandasAI with openai LLM...
+2024-05-16 18:27:42 [INFO] Prompt ID: 7b07aa4a-62c7-45e8-868a-fe8d7b4c2e8c
+2024-05-16 18:27:49 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Find the block with the highest downhole pressure
+    max_downhole_pressure = dfs[0]['AVG_DOWNHOLE_PRESSURE'].max()
+    block_with_highest_pressure = dfs[0].loc[dfs[0]['AVG_DOWNHOLE_PRESSURE'] == max_downhole_pressure, 'BLOCK'].values[0]
+    
+    return { "type": "text", "value": f"The block with the highest downhole pressure is {block_with_highest_pressure}." }
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2024-05-16 18:27:49 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    max_downhole_pressure = dfs[0]['AVG_DOWNHOLE_PRESSURE'].max()
+    block_with_highest_pressure = dfs[0].loc[dfs[0]['AVG_DOWNHOLE_PRESSURE'] == max_downhole_pressure, 'BLOCK'].values[0]
+    return {'type': 'text', 'value': f'The block with the highest downhole pressure is {block_with_highest_pressure}.'}
+
+
+result = analyze_data(dfs)
+        ```
+2024-05-16 18:27:49 [INFO] Answer: {'type': 'text', 'value': 'The block with the highest downhole pressure is Lhokseumawe.'}
+2024-05-16 18:27:49 [INFO] Executed in: 7.482966661453247s
+2024-05-16 18:29:44 [INFO] Question: tell me the highest gas oil ratio
+2024-05-16 18:29:44 [INFO] Running PandasAI with openai LLM...
+2024-05-16 18:29:44 [INFO] Prompt ID: eaa1c40f-7cd5-4e11-8265-d5994a19148e
+2024-05-16 18:29:50 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    highest_gas_oil_ratio = dfs[0]['GAS_OIL_RATIO'].max()
+    return { "type": "number", "value": highest_gas_oil_ratio }
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2024-05-16 18:29:50 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    highest_gas_oil_ratio = dfs[0]['GAS_OIL_RATIO'].max()
+    return {'type': 'number', 'value': highest_gas_oil_ratio}
+
+
+result = analyze_data(dfs)
+        ```
+2024-05-16 18:29:50 [INFO] Answer: {'type': 'number', 'value': 1110.1853088480802}
+2024-05-16 18:29:50 [INFO] Executed in: 5.240351915359497s
