@@ -32,6 +32,7 @@ def create_layout_map(app: Dash, source: DataSource) -> html.Div:
                         className=cns.TITLE_SUMMARY_LAYOUT,
                         children=[
                             html.H1("W-Know: Project Aceh", className=cns.TITLE_BLOCK),
+                            html.H1("Project Aceh", className=cns.TITLE_BLOCK),
                             html.H4("Summary"),
                             dmc.Spoiler(
                                 className=cns.SUMMARY_BLOCK,

@@ -44,7 +44,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                                 # "float": "left",
                             # },
                         ),
-                        dmc.Anchor("Sign in", href="/", underline=False),
+                        dmc.Anchor("Sign in", href="http://127.0.0.1:7654/", underline=False),
                         dmc.Text("     |     ", color="#e9ecef"),
                         dmc.Image(
                         src="/assets/waviv_logo.jpg",
