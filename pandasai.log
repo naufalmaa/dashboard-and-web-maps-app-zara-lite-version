@@ -2640,3 +2640,42 @@ result = analyze_data(dfs)
         ```
 2024-05-16 18:29:50 [INFO] Answer: {'type': 'number', 'value': 1110.1853088480802}
 2024-05-16 18:29:50 [INFO] Executed in: 5.240351915359497s
+2024-05-16 23:29:07 [INFO] Question: Tell me which wellbore code that has bore oil volume
+2024-05-16 23:29:07 [INFO] Running PandasAI with openai LLM...
+2024-05-16 23:29:07 [INFO] Prompt ID: ca63bddb-5b3a-470b-9e7f-1374ed5b75c7
+2024-05-16 23:29:13 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Filter wells with bore oil volume
+    wells_with_oil = dfs[0][dfs[0]['BORE_OIL_VOL'].notnull()]['WELL_BORE_CODE'].unique()
+    
+    return {"type": "text", "value": ", ".join(wells_with_oil)}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2024-05-16 23:29:13 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    wells_with_oil = dfs[0][dfs[0]['BORE_OIL_VOL'].notnull()]['WELL_BORE_CODE'].unique()
+    return {'type': 'text', 'value': ', '.join(wells_with_oil)}
+
+
+result = analyze_data(dfs)
+        ```
+2024-05-16 23:29:13 [INFO] Answer: {'type': 'text', 'value': 'Well-C1, Well-E1, Well-N1, Well-N2, Well-S1, Well-W1'}
+2024-05-16 23:29:13 [INFO] Executed in: 5.205193519592285s

@@ -1,3 +1,4 @@
+import pandas as pd
 from dash import Dash, html, Input, Output, ctx, State, dcc
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
@@ -9,15 +10,16 @@ from ...components.Zara_Assistant import openai_api_key
 import pandas as pd
 import time
 
-from pandasai import SmartDataframe
-from pandasai.llm import OpenAI
+from langchain_community.llms import OpenAI
+from langchain_experimental.agents import create_pandas_dataframe_agent
 
 import chartgpt as cg
 
 from io import StringIO
+import os
 
 openai_api_key = openai_api_key.KEY
-llm = OpenAI(api_token=openai_api_key)
+os.environ["OPENAI_API_KEY"] = openai_api_key
 
 conv_hist = []
 
@@ -27,8 +29,8 @@ def contains_word(text, word_list):
             return True
     return False
 
-word_list = ['table', 'summary', 'summerize', 'rangkum', 'rangkuman']
-plot_list = ['plot']
+word_list = ['table', 'summary', 'summarize', 'rangkum', 'rangkuman']
+plot_list = ['plot', 'graph']
 
 def create_table(df):
     columns, values = df.columns, df.values
@@ -53,20 +55,22 @@ def render(app: Dash, source: DataSource) -> html.Div:
         if button_click == ids.ZARA_SUBMIT_BUTTON:
             time.sleep(1)
             
+            df = pd.DataFrame(data_chosen)
+
             if contains_word(human_prompt.lower(), word_list):
-                call_API = SmartDataframe(data_chosen, config={'llm':llm})
-                chatbot_resp = call_API.chat(human_prompt)
+                agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df, verbose=False)
+                chatbot_resp = agent.run(human_prompt)
                 
                 bot_table_output = f"{chatbot_resp}"
                 df_ = pd.read_csv(StringIO(bot_table_output), delim_whitespace=True, header=0, index_col=0)
-                df_ = df_.transpose()
+                df_.transpose()
                 df_.reset_index(inplace=True)
                 
                 final_table = dmc.Table(create_table(df_))
                 
                 whole_div = html.Div(children=[
-                    dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content',className=cns.ZARA_PROFILE_GRID),
-                                                    dmc.Col(html.Div(dmc.Text(human_prompt,style={'text-align':'left'})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div'),
+                    dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
+                                                    dmc.Col(html.Div(dmc.Text(human_prompt, style={'text-align':'left'})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div'),
                     dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:face-agent", width=30), color='blue', radius='xl', size='30px', style={'border': '2px solid #53A5EC', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
                                                     dmc.Col(html.Div([final_table]), className='grid-chat-for-table')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div')
                 ])
@@ -76,15 +80,14 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 return conv_hist
             
             elif contains_word(human_prompt.lower(), plot_list):
-                dfchart = pd.DataFrame(data_chosen)
-                chart = cg.Chart(dfchart, api_key=openai_api_key)
+                chart = cg.Chart(df, api_key=openai_api_key)
                 fig = chart.plot(human_prompt, return_fig=True)
                 fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
                 graph_bot = dcc.Graph(figure=fig)
 
                 whole_div = html.Div(children=[
-                    dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content',className=cns.ZARA_PROFILE_GRID),
-                                                    dmc.Col(html.Div(dmc.Text(human_prompt,style={'text-align':'left'})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div'),
+                    dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
+                                                    dmc.Col(html.Div(dmc.Text(human_prompt, style={'text-align':'left'})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div'),
                     dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:face-agent", width=30), color='blue', radius='xl', size='30px', style={'border': '2px solid #53A5EC', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
                                                     dmc.Col(html.Div(graph_bot), className='grid-chat-for-table')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div')
                     ])
@@ -94,14 +97,14 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 return conv_hist
             
             else:
-                call_API = SmartDataframe(data_chosen, config={'llm':llm})
-                chatbot_resp = call_API.chat(human_prompt)
+                agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df, verbose=False)
+                chatbot_resp = agent.run(human_prompt)
                 
                 whole_div = html.Div(children=[
-                    dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content',className=cns.ZARA_PROFILE_GRID),
-                                                    dmc.Col(html.Div(dmc.Text(human_prompt,style={'text-align':'left', 'font-weight':700})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div'),
+                    dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
+                                                    dmc.Col(html.Div(dmc.Text(human_prompt, style={'text-align':'left', 'font-weight':700})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div'),
                     dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:face-agent", width=30), color='blue', radius='xl', size='30px', style={'border': '2px solid #53A5EC', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
-                                                    dmc.Col(html.Div(dmc.Text(chatbot_resp,style={'text-align':'left'})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div')
+                                                    dmc.Col(html.Div(dmc.Text(chatbot_resp, style={'text-align':'left'})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div')
                 ])
 
                 conv_hist.append(whole_div)
@@ -110,7 +113,6 @@ def render(app: Dash, source: DataSource) -> html.Div:
     
         else:
             return None
-
 
     return html.Div(
         className=cns.ZARA_CHAT_INPUT,
