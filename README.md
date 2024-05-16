@@ -13,7 +13,10 @@ git clone https://github.com/yourusername/chatgpt-dash-component.git
 pip install -r requirements.txt
 ```
 
-3. Run Python file on "main.py".
+3. Run Python file "main.py" on terminal
+```
+python main.py
+```
 
 this is the screenshots of the dashboard
 
