@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+
 }
 
 html{
@@ -22,7 +23,7 @@ body {
     /* height: auto; */
     margin: auto;
     display: grid;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 /* .navbar, .map-leaflet, .ppd-production-filter, .ppd-main-graphs, .footer-web {
@@ -30,13 +31,13 @@ body {
 } */
 
 /* OVERALL WEB-MAPS */
-.map-container {
-    padding: 10px;
-}
+/* .map-container {
+    padding-left: 10px;
+} */
 
-.map-wrapper{
-    padding: 10px;
-}
+/* .map-wrapper{
+    padding-left: 10px;
+} */
 
 .data-cell-left{
     color: #151515;
@@ -51,7 +52,7 @@ body {
 
 .left-side-map {
     grid-column: 1/3;
-    padding: 20px;
+    padding: 50px;
 }
 
 .title-summary-layout h4 {
@@ -64,10 +65,11 @@ body {
 .title-block {
     width: 95%;
     color: #3F72AF;
-    font-size: 44px;
+    font-size: 40px;
     font-family: 'Ubuntu', sans-serif;
     margin-left: -3px;
     padding: 0;
+    font-weight: 700;
 }
 
 .summary-block {
@@ -85,10 +87,9 @@ body {
 
 /* RIGHT GRID-SIDE MAP */
 
-.map-leaflet {
-    /* width: 66%; */
-    padding: 10px;
-}
+/* .map-leaflet {
+    padding-left: 10px;
+} */
 
 /* OVERALL Overview Dashboard */
 .overview-container{
@@ -107,7 +108,7 @@ body {
     /* margin-right: 20px 80px 80px; */
 }
 .overview-to-date-picker-wrapper{
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 #from-datepicker-layout-overview, #to-datepicker-layout-overview{
@@ -199,7 +200,7 @@ body {
 }
 
 .ppd-to-date-picker-wrapper{
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 .ppd-sc-group-left-grid{
@@ -210,6 +211,8 @@ body {
     height: 100%;
     width: 100%;
 }
+
+
 
 /* Overall GnG Analysis Dashboard */
 .gng-container{
@@ -242,9 +245,199 @@ body {
     padding: 10px;
 }
 
-/* .gng-well-log-graphs {
-    margin-left: 30px;
+
+/* chart di overview */
+
+.ovw-avg-production-month-graph {
+    margin-top: 20px;
+}
+
+.ovw-operator-well-counts-pie-chart {
+    margin: 50px;
+}
+
+/* ---------------------------------------------------------------- */
+/* ZARA */
+
+.zara-float-button {
+    margin: 20px;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    z-index: 101;
+}
+
+/* card chatbot grid */
+
+.parent-card{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    /* grid-template-rows: 600px 600px; */
+}
+
+.parent-card .zara-card-section {
+    grid-column: 1/12;
+    grid-row: 1/12;
+    /* background-color: #f5f4f4; */
+    width: 61%;
+    border-width: 2px;
+    border-color: #151515;
+    margin-left: 15px;
+    /* margin: 0px 20px 0px 20px; */
+}
+
+.parent-card .zara-card-intro{
+    grid-column: 8/12;
+    grid-row: 1/12;
+    height: 30%;
+    border-width: 2px;
+    border-color: #CED4DA;
+}
+
+.parent-card .zara-card-table{
+    grid-column: 8/12;
+    grid-row: 9/12;
+    height: 32rem;
+    border-width: 2px;
+    border-color: #CED4DA;
+}
+
+/* chat input grid */
+.zara-chat-input {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.zara-chat-input .zara-chat-area {
+    grid-column: 1/12;
+    grid-row: 1/12;
+    width: 93%;
+    margin: 10px 0px 0px 15px;
+    border-width: 2px;
+    border-color: #CED4DA;
+}
+
+.zara-chat-area .mantine-Textarea-wrapper{
+    border-color: #CED4DA;
+}
+
+.zara-chat-input .zara-submit-button {
+    grid-column: 11/12;
+    grid-row: 1/12;
+    margin: 10px 0px 0px 50px;
+}
+
+#zara-submit-button {
+    height: 63px;
+    border-width: 2px;
+    border-color: #CED4DA;
+}
+
+.zara-tab-section{
+
+    width: 90%;
+    height: 60px;
+    margin-top: 10px;
+    overflow-x: scroll;
+    /* Hide the scrollbar */
+    scrollbar-width: 1px;
+}
+
+#zara-segmented-prev .mantine-SegmentedControl-label{
+    /* padding: 5px 20px 5px 20px; */
+    font-family: 'montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#zara-segmented-prev .mantine-SegmentedControl-labelActive{
+    font-weight: 700;
+    color: #151515;
+    /* font-weight: 600; */
+}
+
+/* #zara-segmented-prev .mantine-SegmentedControl-active{
 } */
+
+
+.zara-response-section{
+    height: 700px;
+    width: 100%;
+    margin-bottom: 10px;
+    overflow: auto;
+    overflow-x: hidden;
+    /* background: #f5f4f4; */
+}
+
+/* scrollbar */
+.full-chatbot-layout-zara::-webkit-scrollbar{
+    width: 15px;
+}
+
+.full-chatbot-layout-zara::-webkit-scrollbar-track{
+    /* background: #F5F4F4; */
+}
+
+.full-chatbot-layout-zara::-webkit-scrollbar-thumb{
+    /* background: #F5F4F4; */
+    border: 2px solid #C1C1C1;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+/* response chatbot */
+
+.grid-profile{
+    padding: 20px;
+}
+
+.grid-chat{
+    max-width: 600px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.grid-chat-for-table{
+    padding: 20px 0px 20px 0px;
+    max-width: 600px;
+}
+
+.chat-full-div{
+    border-bottom: 1px solid #C1C1C1;
+}
+
+/* for scroll table */
+
+.grid-chat-for-table{
+    overflow: auto;
+    overflow-y: hidden;
+}
+
+.grid-chat-for-table::-webkit-scrollbar{
+    height: 15px;
+}
+
+.grid-chat-for-table::-webkit-scrollbar-track{
+    background: #F5F4F4;
+}
+
+.grid-chat-for-table::-webkit-scrollbar-thumb{
+    background: #F5F4F4;
+    border: 2px solid #C1C1C1;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.zara-profile-grid{
+    margin-top: 5px;
+}
+
 
 
 
@@ -331,7 +524,7 @@ body {
     .web-container .map-container .map-wrapper .left-side-map {
         grid-column: 1/4;
         overflow: auto;
-        max-height: 815px;
+        max-height: 1000px;
     }
 
     /* right grid-side map*/
@@ -342,6 +535,7 @@ body {
     /* tabs */
     .web-container .main-tabs {
         grid-column: 1/13;
+        margin: 80px 50px 20px 50px;
     }
 
     .web-container .main-tabs .main-tablist {
@@ -363,6 +557,7 @@ body {
     /* right grid-side of production performance dashboard*/
     .web-container .overview-wrapper .overview-main-content{
         grid-column: 5/13;
+        margin-top: 20px;
     }
 
 
@@ -434,4 +629,8 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px;
     text-align: justify;
+}
+
+.dash-debug-menu__outer, .dash-debug-menu {
+    display: none !important;
 }

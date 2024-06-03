@@ -122,7 +122,6 @@ WELLS_3D_GRAPH = "wells-3d-graph"
 
 WELLS_LITH_3D_RESET_FILTER_BUTTON = "wells-3d-reset-filter-button"
 
-# 
 
 
 
@@ -134,4 +133,27 @@ FROM_DATEPICKER_LAYOUT = 'from-datepicker-layout'
 TO_DATEPICKER_LAYOUT = 'to-datepicker-layout'
 ICON_TITLE_SUMMARY_TOGETHER = 'icon-title-summary-together'
 
+################################################################
 
+#Zara
+# Memory Output
+MEMORY_OUTPUT = 'memory-output'
+
+# Clear Convo
+CLEAR_CONVO = 'clear-convo'
+
+# Tab
+ZARA_SEGMENTED_PREV = 'zara-segmented-prev'
+
+#BUTTON
+ZARA_FLOAT_BUTTON = 'zara-float-button'
+ZARA_DRAWER = 'zara-drawer'
+
+#Response Chatbot
+RESPONSE_CHAT = 'response-chat'
+
+#CHAT AREA
+ZARA_CHAT_AREA = 'zara-chat-area'
+
+#Submit Button
+ZARA_SUBMIT_BUTTON = 'zara-submit-button'

@@ -5,10 +5,10 @@ from src.components.web_layout import create_layout
 from src.data.loader import load_well_production_data, load_all_blocks, load_all_wells, load_log_data
 from src.data.source import DataSource
 
-PRODUCTION_DATA_PATH = "./data/csv/aceh_production_data_daily_ed.csv"
-BLOCK_DATA_PATH = './data/geojson/all_blocks_ed.geojson'
-WELL_DATA_PATH = './data/geojson/all_wells_ed.geojson'
-LOG_DATA_PATH = "./data/csv/aceh_log_data_ed.csv"
+PRODUCTION_DATA_PATH = "./data/csv/aceh_production_data_daily_rev.csv"
+BLOCK_DATA_PATH = './data/geojson/all_blocks_rev.geojson'
+WELL_DATA_PATH = './data/geojson/all_wells_rev.geojson'
+LOG_DATA_PATH = "./data/csv/aceh_log_data_rev.csv"
 
 def main() -> None: 
     
@@ -19,7 +19,7 @@ def main() -> None:
     geodata_well = load_all_wells(WELL_DATA_PATH)
     
     # 040823
-    data_log = load_log_data(LOG_DATA_PATH)
+    data_log = load_log_data(LOG_DATA_PATH) 
     data = DataSource(_data=data_well, _geodata_blocks=geodata_block, _geodata_wells=geodata_well, _data_log=data_log)
     
     app = Dash(__name__, prevent_initial_callbacks='initial_duplicate', suppress_callback_exceptions=True, meta_tags=[
@@ -28,9 +28,8 @@ def main() -> None:
     
     app.title = "Project Aceh"
     app.layout = create_layout(app, data)
-    app.run_server(debug=True, port = 7500)
-    
 
+    app.run_server(debug=True, port = 7500)
 
 if __name__ == '__main__':
     main()

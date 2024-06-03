@@ -74,13 +74,12 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
 
         fig = make_subplots(
-            rows=2,
-            cols=1,
+            rows=1,
+            cols=2,
             # column_widths=[0.7, 0.3],
             # row_heights=[0.5, 0.5],
             specs=[
-                [{"type": "pie"}],
-                [{"type": "pie"}],
+                [{"type": "pie"}, {"type": "pie"}],
             ],
             subplot_titles=(
                 "<b>Operators Count</b>",
@@ -106,6 +105,8 @@ def render(app: Dash, source: DataSource) -> html.Div:
                     allBLOCKS.BLOCK_NAME
                 ].to_list(),
                 
+                marker=dict(colors=px.colors.sequential.RdBu),
+                
             ),
             row=1,
             col=1,
@@ -130,10 +131,12 @@ def render(app: Dash, source: DataSource) -> html.Div:
                     "Well-N2, Well-W2",
                     "Well-E2",
                     "Well-E3"
-                ]
+                ],
+                marker=dict(colors=px.colors.sequential.Aggrnyl),
+
             ),
-            row=2,
-            col=1,
+            row=1,
+            col=2,
         )
         
         fig.update_traces(
@@ -147,14 +150,15 @@ def render(app: Dash, source: DataSource) -> html.Div:
             # textinfo='value',
             textposition='inside',
             hovertemplate='Purposes: %{label}<br>Value:%{value}<br>Wells: %{customdata}<extra></extra>',
-            row=2,
-            col=1,
+            row=1,
+            col=2,
         )
 
         # Update layout
         fig.update_layout(
             template="plotly_white",
-            # height=300,
+            height=300,
+            # width=300,
             autosize=True,  # Allow the figure to be autosized
             margin=dict(l=10, r=10, b=10),  # Adjust the margins for the figure
             # legend=dict(
