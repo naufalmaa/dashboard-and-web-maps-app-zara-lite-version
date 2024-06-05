@@ -9,6 +9,7 @@ from ...components.Zara_Assistant import openai_api_key
 
 import pandas as pd
 import time
+# import prompt
 
 from langchain_community.llms import OpenAI
 from langchain_experimental.agents import create_pandas_dataframe_agent
@@ -39,6 +40,56 @@ def create_table(df):
     table = [html.Thead(header), html.Tbody(rows)]
     return table
 
+def generate_prompt(df, question):
+    # Generate insights
+    insights = []
+
+    # Basic DataFrame Information
+    insights.append(
+        f"The DataFrame contains {len(df)} rows and {len(df.columns)} columns."
+    )
+    insights.append("Here are the first 5 rows of the DataFrame:\n")
+    insights.append(df.head().to_string(index=False))
+
+    # Summary Statistics
+    insights.append("\nSummary Statistics:")
+    insights.append(df.describe().to_string())
+
+    # Column Information
+    insights.append("\nColumn Information:")
+    for col in df.columns:
+        insights.append(f"- Column '{col}' has {df[col].nunique()} unique values.")
+
+    # Missing Values
+    missing_values = df.isnull().sum()
+    insights.append("\nMissing Values:")
+    for col, count in missing_values.items():
+        if count > 0:
+            insights.append(f"- Column '{col}' has {count} missing values.")
+
+    # Most Common Values in Categorical Columns
+    categorical_columns = df.select_dtypes(include=["object"]).columns
+    for col in categorical_columns:
+        top_value = df[col].mode().iloc[0]
+        insights.append(f"\nMost common value in '{col}' column: {top_value}")
+
+    insights_text = "\n".join(insights)
+
+    # Compliment and Prompt
+    prompt = (
+        "You are a master project manager, data analyst, and also petroleum engineer in oil and gas industry named Zara, who an assistant that has a lot of knowledge and experience with project management."
+        "The questions about arbitrary datasets. The user's question will be provided. Ensure you "
+        "answer the user's question accurately and given the context of the dataset. The user "
+        "will use the results of your commentary to work on a project management or to research the data. "
+        "If the user's question doesn't make sense, feel free to make a witty remark about user's question."
+        "Your response should use Markdown markup. Limit your response to only 1-3 sentences. Address the"
+        "user directly as they can see your response. If user asking about your name, respond it with saying your name, Zara."
+    )
+
+    prompt = f"{prompt}\n\nContext:\n\n{insights_text}\n\nUser's Question: {question}"
+
+    return prompt
+
 def render(app: Dash, source: DataSource) -> html.Div:
     
     @app.callback(
@@ -56,6 +107,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             time.sleep(1)
             
             df = pd.DataFrame(data_chosen)
+            # prompt_content = prompt.generate_prompt
 
             if contains_word(human_prompt.lower(), word_list):
                 agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df, verbose=False)
@@ -79,26 +131,27 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 
                 return conv_hist
             
-            elif contains_word(human_prompt.lower(), plot_list):
-                chart = cg.Chart(df, api_key=openai_api_key)
-                fig = chart.plot(human_prompt, return_fig=True)
-                fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
-                graph_bot = dcc.Graph(figure=fig)
+            # elif contains_word(human_prompt.lower(), plot_list):
+            #     chart = cg.Chart(df, api_key=openai_api_key)
+            #     fig = chart.plot(human_prompt, return_fig=True)
+            #     fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
+            #     graph_bot = dcc.Graph(figure=fig)
 
-                whole_div = html.Div(children=[
-                    dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
-                                                    dmc.Col(html.Div(dmc.Text(human_prompt, style={'text-align':'left'})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div'),
-                    dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:face-agent", width=30), color='blue', radius='xl', size='30px', style={'border': '2px solid #53A5EC', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
-                                                    dmc.Col(html.Div(graph_bot), className='grid-chat-for-table')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div')
-                    ])
+            #     whole_div = html.Div(children=[
+            #         dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
+            #                                         dmc.Col(html.Div(dmc.Text(human_prompt, style={'text-align':'left'})), className='grid-chat')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div'),
+            #         dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:face-agent", width=30), color='blue', radius='xl', size='30px', style={'border': '2px solid #53A5EC', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),
+            #                                         dmc.Col(html.Div(graph_bot), className='grid-chat-for-table')], style={'padding':'5px 0px 5px 0px'}, className='chat-full-div')
+            #         ])
                 
-                conv_hist.append(whole_div)
+            #     conv_hist.append(whole_div)
                 
-                return conv_hist
+            #     return conv_hist
             
             else:
+                prompt = generate_prompt(df, human_prompt)  # Generate prompt using the function
                 agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df, verbose=False)
-                chatbot_resp = agent.run(human_prompt)
+                chatbot_resp = agent.run(prompt)  # Use the generated prompt
                 
                 whole_div = html.Div(children=[
                     dmc.Grid(gutter='xs', children=[dmc.Col(html.Div(dmc.Avatar(DashIconify(icon="mdi:user-outline", width=30), color='gray', radius='xl', size='30px', style={'border': '2px solid #868E96', 'border-radius':'50%'})), span='content', className=cns.ZARA_PROFILE_GRID),

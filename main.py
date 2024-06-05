@@ -29,7 +29,9 @@ def main() -> None:
     app.title = "Project Aceh"
     app.layout = create_layout(app, data)
 
-    app.run_server(debug=True, port = 7500)
+    app.run_server(
+        debug=True, 
+        port = 7500)
 
 if __name__ == '__main__':
     main()

@@ -58,7 +58,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                         id=ids.ZARA_SEGMENTED_PREV,
                         radius="md",
                         size="sm",
-                        value="Well Production Data",
+                        value="data_production",
                         data=[
                         {"value": "data_production", "label": "Production Data"},
                         {'value': 'data_gor', 'label': 'Water Cut Daily Gas Ratio'},
