@@ -14,7 +14,7 @@ import random
 
 def render(app: Dash, source: DataSource) -> html.Div:
     @app.callback(
-        Output(ids.PREVIEW_DATA_TABLE, "rowData"),
+        Output(ids.PREVIEW_DATA_TABLE, "rowData", allow_duplicate=True),
         Input(ids.MEMORY_OUTPUT, "data"),
     )
     def create_table(dataset):
