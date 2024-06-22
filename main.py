@@ -26,7 +26,7 @@ def main() -> None:
         {"name": "viewport", "content": "width=device-width, initial-scale=1.0"}
     ])
     
-    app.title = "Project Aceh"
+    app.title = "W-Know"
     app.layout = create_layout(app, data)
 
     app.run_server(

@@ -1,3 +1,7 @@
 src/components/Zara_Assistant/openai_api_key.py
 zara_venv
 *.pyc
+openai_api_key.py
+config.ini
+*.db
+*.db.wal

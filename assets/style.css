@@ -365,7 +365,7 @@ body {
     width: 100%;
     margin-bottom: 10px;
     overflow: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
     /* background: #f5f4f4; */
 }
 
@@ -407,6 +407,33 @@ body {
 
 .chat-full-div{
     border-bottom: 1px solid #C1C1C1;
+}
+
+.chat-item {
+    border: 1px solid rgb(206, 212, 218);
+    border-radius: 10px;
+    /* padding: 20px; */
+    margin: 10px 10px 10px 10px ;
+    /* display: flex;
+    justify-content: space-between; */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.question {
+    padding: 40px;
+    color: black;
+    margin-right: 30px; /* Add 5px margin to the right of the question */
+}
+
+.answer {
+    padding: 40px;
+    border: 1px solid #96c5fc;
+    color: grey;
+    margin-left: 30px; /* Add 5px margin to the left of the answer */
+    overflow-x: auto;
 }
 
 /* for scroll table */

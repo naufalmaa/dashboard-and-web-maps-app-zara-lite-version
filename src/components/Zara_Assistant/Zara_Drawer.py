@@ -5,7 +5,7 @@ from dash_iconify import DashIconify
 from ...data.source import DataSource
 from ...components import ids, cns
 
-from ..Zara_Assistant import Zara_Chatbot, zara_tab, preview_data, zara_clear_button
+from ..Zara_Assistant import Zara_Chatbot_v2, zara_tab, preview_data, zara_clear_button
 
 
 def render(app: Dash, source: DataSource) -> html.Div:
@@ -19,8 +19,14 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
     return html.Div(
         children=[
-            dmc.Button("Ask Zara", className=cns.ZARA_FLOAT_BUTTON, id=ids.ZARA_FLOAT_BUTTON, 
-                       variant='gradient', gradient={'from':'indigo', 'to':'cyan'}, leftIcon=DashIconify(icon='material-symbols:face-3', width=20)),
+            dmc.Button(
+                "Ask Zara",
+                className=cns.ZARA_FLOAT_BUTTON,
+                id=ids.ZARA_FLOAT_BUTTON,
+                variant="gradient",
+                gradient={"from": "indigo", "to": "cyan"},
+                leftIcon=DashIconify(icon="material-symbols:face-3", width=20),
+            ),
             dmc.Drawer(
                 id=ids.ZARA_DRAWER,
                 lockScroll=False,
@@ -28,40 +34,57 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 size="70%",
                 zIndex=1000,
                 children=[
-                    html.Div(className='parent-card', children=[
-                    dmc.Card(
-                        className=cns.ZARA_CARD_SECTION,
-                        withBorder=True,
-                        shadow='0px',
-                        radius='lg',
+                    html.Div(
+                        className="parent-card",
                         children=[
-                            html.Div(className=cns.ZARA_RESPONSE_SECTION, id=ids.RESPONSE_CHAT),
+                            dmc.Card(
+                                className=cns.ZARA_CARD_SECTION,
+                                withBorder=True,
+                                shadow="0px",
+                                radius="lg",
+                                children=[
+                                    dmc.LoadingOverlay(
+                                        html.Div(
+                                            className=cns.ZARA_RESPONSE_SECTION,
+                                            id=ids.RESPONSE_CHAT,
+                                        ),
+                                    )
+                                ],
+                            ),
+                            dmc.Card(
+                                className=cns.ZARA_CARD_INTRO,
+                                withBorder=True,
+                                shadow="0px",
+                                radius="lg",
+                                children=[
+                                    html.Div(
+                                        children=[
+                                            dmc.Text(
+                                                "Welcome to Zara!",
+                                                style={
+                                                    "fontWeight": "600",
+                                                    "fontSize": "30px",
+                                                },
+                                            ),
+                                            dmc.Text(
+                                                "An assistant for you to build a quick data analysis without querying your data"
+                                            ),
+                                            html.Div(zara_tab.render(app, source)),
+                                            # html.Div(zara_clear_button.render(app, source))
+                                        ]
+                                    )
+                                ],
+                            ),
+                            dmc.Card(
+                                className=cns.ZARA_CARD_TABLE,
+                                withBorder=True,
+                                shadow="0px",
+                                radius="lg",
+                                children=[preview_data.render(app, source)],
+                            ),
                         ],
                     ),
-                    dmc.Card(
-                        className = cns.ZARA_CARD_INTRO,
-                        withBorder=True,
-                        shadow='0px',
-                        radius='lg',
-                        children=[
-                            html.Div(children=[
-                                dmc.Text('Welcome to Zara!', style={'fontWeight': '600', 'fontSize':'30px'}),
-                                dmc.Text('An assistant for you to build a quick data analysis without querying your data'),
-                                html.Div(zara_tab.render(app, source)),
-                                # html.Div(zara_clear_button.render(app, source))
-                            ])
-                        ]
-                    ),
-                    dmc.Card(
-                        className = cns.ZARA_CARD_TABLE,
-                        withBorder=True,
-                        shadow='0px',
-                        radius='lg',
-                        children=[
-                            preview_data.render(app, source)
-                        ]
-                    )]),
-                    Zara_Chatbot.render(app, source)
+                    Zara_Chatbot_v2.render(app, source),
                 ],
             ),
         ]
