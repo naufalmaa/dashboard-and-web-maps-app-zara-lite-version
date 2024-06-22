@@ -9,10 +9,10 @@ from ...components import ids, cns
 
 def render(app: Dash, source: DataSource) -> html.Div:
     @app.callback(
-        Output(ids.MEMORY_OUTPUT, 'data'),
-        Output(ids.PREVIEW_DATA_TABLE, 'columnDefs'),
+        Output(ids.MEMORY_OUTPUT, 'data', allow_duplicate=True),
+        Output(ids.PREVIEW_DATA_TABLE, 'columnDefs', allow_duplicate=True),
         Input(ids.ZARA_SEGMENTED_PREV, 'value'),
-        prevent_initial_call=True,
+        # prevent_initial_call=True,
     )
     
     def create_table(data: str):
