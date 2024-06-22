@@ -54,6 +54,10 @@ from .gng_analysis import (
     
 )
 
+from .Zara_Assistant import (
+    zara_layout
+)
+
 from .web_maps.data_color_map import colormap
 
 
@@ -88,7 +92,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                             dmc.Tab("Geology & Geophysics Analysis", value="3"),
                             # dmc.Tab("Cost Analysis", value="4"),
                         ],
-                        className=cns.MAIN_TABLIST,
+                        className=cns.MAIN_TABLIST, position='center', grow=True
                     ),
                     # overview (chatbot, preview data, about data)
                     dmc.TabsPanel(overview_layout.create_layout(app, source), value="1", className=cns.OVW_CONTAINER),
@@ -103,10 +107,16 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                     # dmc.TabsPanel("This is for cost analysis layout. (in progress)", value="4", className=cns.CAD_CONTAINER),
                 ],
                 value="1",
-                variant="outline",
+                variant="default",
                 className=cns.MAIN_TABS,
             ),
 
+            html.Div(
+                className=cns.ZARA_FLOAT_BUTTON,
+                children=[
+                    zara_layout.create_layout(app,source)
+                ]
+            ),
             
             # Div Footer (Footer(6))
             html.Div(

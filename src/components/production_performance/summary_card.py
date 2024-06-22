@@ -107,7 +107,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                             radius="20px",
                                             style={
                                                 "background-color": "#FFFFFF",
-                                                "border": "2px solid #CE6D7D",
+                                                "border": "2px solid #151515",
                                             },
                                         ),
                                     ],
@@ -159,7 +159,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                             radius="20px",
                                             style={
                                                 "background-color": "#FFFFFF",
-                                                "border": "2px solid #DDCC77",
+                                                "border": "2px solid #151515",
                                             },
                                         ),
                                     ],
@@ -211,7 +211,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                             radius="20px",
                                             style={
                                                 "background-color": "#FFFFFF",
-                                                "border": "2px solid #88CCEE",
+                                                "border": "2px solid #151515",
                                             },
                                         ),
                                     ],
@@ -262,7 +262,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                             radius="20px",
                                             style={
                                                 "background-color": "#FFFFFF",
-                                                "border": "2px solid #012226",
+                                                "border": "2px solid #151515",
                                             },
                                         ),
                                     ],
