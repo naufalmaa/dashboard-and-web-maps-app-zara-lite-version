@@ -178,8 +178,12 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 ]
                 return (question + cur if cur else question), None
             else:
+                import_statement = "import pandas as pd\nimport plotly.express as px\n"
+                code_with_import = import_statement + code
+                
+                # Execute the generated code safely
                 exec_globals = {"df": df, "px": px}
-                exec_locals = safe_exec(code, globals=exec_globals)
+                exec_locals = safe_exec(code_with_import, globals=exec_globals)
                 
                 # Initialize the outputs to default values
                 graph_output = None
