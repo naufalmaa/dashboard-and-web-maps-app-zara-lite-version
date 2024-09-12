@@ -5,7 +5,7 @@ from dash_iconify import DashIconify
 from ...data.source import DataSource
 from ...components import ids, cns
 
-from ..Zara_Assistant import Zara_Chatbot_v2, zara_tab, preview_data, zara_clear_button
+from ..Zara_Assistant import Zara_Chatbot_v3, zara_tab, preview_data, zara_clear_button
 
 
 def render(app: Dash, source: DataSource) -> html.Div:
@@ -84,7 +84,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                             ),
                         ],
                     ),
-                    Zara_Chatbot_v2.render(app, source),
+                    Zara_Chatbot_v3.render(app, source),
                 ],
             ),
         ]

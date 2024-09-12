@@ -39,7 +39,7 @@ app.layout = dmc.Center(
                         dmc.Group(
                             [
                                 dmc.Button(
-                                    "SKKMIGAS Account",
+                                    "Waviv Account",
                                     id="acc-button",
                                     leftIcon=DashIconify(icon="fluent:database-plug-connected-20-filled"),
                                     radius="xl",

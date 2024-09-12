@@ -90,8 +90,9 @@ def generate_prompt(df, question):
         "If the user's question doesn't make sense, feel free to make a witty remark about user's question."
         "Your response should use Markdown markup. Limit your response to only 1-3 sentences. Address the"
         "user directly as they can see your response. If user asking about your name, respond it with saying your name, Zara."
-        "You can provide tabular data by generating the code <code> for viewing the previous data in pandas if necessary, in the format requested. The solution should be given using pandas and only pandas in python. Do not use other source. Return the code <code> in the following format '''python <code>'''."
-        "You can also provide data visualization by generating the code <code> the previous data in plotly, in the format requested. The solution should be given using plotly and only plotly in python. Do not use matplotlib or other source. Return the code <code> in the following format '''python <code>'''."
+        "DO NOT ANSWER the user with code and DO NOT tell user the code they should run, you only provide user the answers with text based on data given, unless user want the answer in table format or chart"
+        # "You can provide tabular data by generating the code <code> for viewing the previous data in pandas if necessary, in the format requested. The solution should be given using pandas and only pandas in python. Do not use other source. Return the code <code> in the following format '''python <code>'''."
+        # "You can also provide data visualization by generating the code <code> the previous data in plotly, in the format requested. The solution should be given using plotly and only plotly in python. Do not use matplotlib or other source. Return the code <code> in the following format '''python <code>'''."
 
     )
 
@@ -162,15 +163,18 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 """})
 
             completion = client.chat.completions.create(
-                model="gpt-4",
+                model="gpt-3.5-turbo",
                 messages=messages,
                 temperature=0.0,
                 max_tokens=4000,
                 top_p=0.5
             )
             
-            print(completion.choices[0].message.content)
-            code = extract_python_code(completion.choices[0].message.content)
+            response_result = completion.choices[0].message.content
+            
+            print(f"\n --- \n {response_result} \n")
+            code = extract_python_code(response_result)
+            print(f"\n --- \n {code} \n")
             if code is None:
                 question = [
                     dcc.Markdown(question, className="chat-item question"),
@@ -184,6 +188,9 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 # Execute the generated code safely
                 exec_globals = {"df": df, "px": px}
                 exec_locals = safe_exec(code_with_import, globals=exec_globals)
+                
+                print(f"\n --- \n {exec_globals} \n")
+                print(f"\n --- \n {exec_locals} \n")
                 
                 # Initialize the outputs to default values
                 graph_output = None
