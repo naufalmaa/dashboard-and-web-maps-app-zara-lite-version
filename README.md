@@ -5,7 +5,7 @@ This prototype of oil and gas dashboard mainly uses Python and Dash. I understan
 ### The step-by-step of compiling this code:
 1. Clone the repository
 ```
-git clone https://github.com/yourusername/chatgpt-dash-component.git
+git clone https://github.com/yourusername/dashboard-and-web-maps-app-zara.git
 ```
 
 2. Install required Python packages, using python 3.10.11 is preferred.
