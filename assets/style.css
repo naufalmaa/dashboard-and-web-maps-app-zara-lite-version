@@ -17,6 +17,48 @@ body {
     color: #112D4E;
 }
 
+/* LOGIN CONTAINER */
+/* Scoped container for the login page */
+.float-login-page {
+    position: fixed; /* Cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 1); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for background */
+    z-index: 9999; /* Higher z-index to overlay on top of other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Login card styling within the float-login-page */
+.float-login-page .dmc-Card {
+    z-index: 10000; /* Ensure the card is above the blurred background */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+/* Buttons, links, and other elements within the float-login-page */
+.float-login-page a {
+    text-decoration: none;
+}
+
+.float-login-page a:hover {
+    text-decoration: underline;
+}
+
+.float-login-page .dmc-Button {
+    transition: background-color 0.3s ease;
+}
+
+.float-login-page .dmc-Button:hover {
+    background-color: #3b5bdb;
+}
+
+
+
 /* FOR WEB CONTAINER */
 .web-container {
     width: 100%;

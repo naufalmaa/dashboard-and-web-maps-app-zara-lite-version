@@ -146,7 +146,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                                                 Answer questions about datasets accurately using provided context.
                                                 Use Markdown for formatting and limit responses to 1-3 sentences unless generating code.
                                                 Use only pandas for data analysis or tables and Plotly for charts.
-                                                End pandas code with print(), and format code as: ```python <code>```
+                                                End pandas code with print() and only print(), and format code as: ```python <code>```
                                                  """},
                 {"role": "user", "content": prompt_content}
             ]

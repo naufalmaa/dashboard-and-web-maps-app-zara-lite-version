@@ -4,7 +4,7 @@ import dash_mantine_components as dmc
 from dash_iconify import DashIconify
 
 from ...data.source import DataSource
-from ...components import ids, cns
+from .. import ids, cns
 from ...components.Zara_Assistant import openai_api_key
 
 import pandas as pd

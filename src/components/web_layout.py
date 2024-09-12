@@ -65,14 +65,14 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
     return html.Div(
         className=cns.WEB_CONTAINER,
         children=[
-            # div navbar (header(1))
-            html.Div(
-                className=cns.NAVBAR, 
-                children=[
-                    # html.H1("Navigation Bar")
-                    headerbar.create_layout(app, source)
-                ]
-            ),
+            # # div navbar (header(1))
+            # html.Div(
+            #     className=cns.NAVBAR, 
+            #     children=[
+            #         # html.H1("Navigation Bar")
+            #         headerbar.create_layout()
+            #     ]
+            # ),
             
             # div for webmaps
             html.Div(
