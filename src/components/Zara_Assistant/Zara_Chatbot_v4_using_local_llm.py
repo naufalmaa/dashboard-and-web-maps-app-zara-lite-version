@@ -25,6 +25,36 @@ import io
 import contextlib
 import os
 
+import requests
+
+def call_custom_llm(question, df=None, plotting_enabled=False, query_enabled=False):
+    if df is not None:
+        prompt_content = generate_prompt(df, question)
+    else:
+        prompt_content = question
+
+    messages = [
+        {"role": "system", "content": "You are an expert in petroleum engineering."},
+        {"role": "user", "content": prompt_content}
+    ]
+
+    payload = {
+        "model": "llama3.1:8b",
+        "options": {
+            "temperature": 0.0
+        },
+        "stream": False,
+        "messages": messages
+    }
+
+    try:
+        response = requests.post("http://117.54.250.177:5162/api/chat", json=payload)
+        response.raise_for_status()
+        response_data = response.json()
+        return response_data['message']['content']
+    except Exception as e:
+        return f"Error calling LLM API: {str(e)}"
+
 openai_api_key_ = openai_api_key.KEY
 os.environ["OPENAI_API_KEY"] = openai_api_key_
 
@@ -38,27 +68,8 @@ def contains_word(text, word_list):
             return True
     return False
 
-
-table_list = [
-    'table', 'summary', 'summarize', 'rangkum', 'rangkuman', 'tabel', 'daftar', 'rekap', 'rekapan',
-    'data', 'list', 'rincian', 'ringkasan', 'resume', 'overview', 'display table', 'tabulasi',
-    'lihat tabel', 'tampilkan tabel', 'show table', 'lihat data', 'generate table', 'create table',
-    'buat tabel', 'export table', 'data tabular', 'table format', 'tabel ringkasan',
-    'detail tabel', 'dataframe', 'df', 'row', 'kolom', 'kolom-kolom', 'baris', 'baris-baris',
-    'table report', 'rekap data', 'tabel hasil', 'result table', 'output table', 'matrix',
-    'tabel analisis', 'tabel informasi', 'tabular', 'info tabel'
-]
-
-plot_list = [
-    'plot', 'graph', 'chart', 'diagram', 'visualisasi', 'visualisasi data', 'grafik', 'graf',
-    'line chart', 'bar chart', 'pie chart', 'scatter plot', 'histogram', 'box plot',
-    'donut chart', 'area chart', 'heatmap', 'timeseries', 'trend', 'kurva', 'plotkan',
-    'buat grafik', 'tampilkan grafik', 'show chart', 'generate plot', 'visualisasi grafik',
-    'visualisasi chart', 'buat diagram', 'grafik batang', 'grafik garis', 'grafik lingkaran',
-    'grafik sebar', 'grafik area', 'grafik tren', 'plot data', 'visual chart', 'plot hasil',
-    'data visual', 'render chart', 'grafik performa', 'visual report', 'output chart',
-    'plot summary', 'gambar grafik', 'grafik output', 'plot visualisasi'
-]
+word_list = ['table', 'summary', 'summarize', 'rangkum', 'rangkuman']
+plot_list = ['plot', 'graph']
 
 def create_table(df):
     columns, values = df.columns, df.values
@@ -185,15 +196,17 @@ def render(app: Dash, source: DataSource) -> html.Div:
                     Use only Plotly.
                 """})
 
-            completion = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=messages,
-                temperature=0.0,
-                max_tokens=4000,
-                top_p=0.5
-            )
+            # completion = client.chat.completions.create(
+            #     model="gpt-3.5-turbo",
+            #     messages=messages,
+            #     temperature=0.0,
+            #     max_tokens=4000,
+            #     top_p=0.5
+            # )
             
-            response_result = completion.choices[0].message.content
+            # response_result = completion.choices[0].message.content
+            
+            response_result = call_custom_llm(question, df, plotting_enabled, query_enabled)
             
             print(f"\n --- \n {response_result} \n")
             code = extract_python_code(response_result)
@@ -201,7 +214,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             if code is None:
                 question = [
                     dcc.Markdown(question, className="chat-item question"),
-                    dcc.Markdown(completion.choices[0].message.content, className="chat-item answer")
+                    dcc.Markdown(response_result, className="chat-item answer")
                 ]
                 return (question + cur if cur else question), None
             else:
